@@ -4,14 +4,14 @@ import db from '@adonisjs/lucid/services/db'
 import logger from '@adonisjs/core/services/logger'
 
 export default class TenantContextMiddleware {
-  async handle({ auth, request, response }: HttpContext, next: NextFn) {
+  async handle({ auth, response }: HttpContext, next: NextFn) {
     try {
-      // Check if user is authenticated
+      // Check if the user is authenticated
       if (!auth.user) {
         return await next()
       }
 
-      // Get organization ID from authenticated user
+      // Get organization ID from an authenticated user
       const organizationId = auth.user.organization_id
 
       if (!organizationId) {
