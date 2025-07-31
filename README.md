@@ -1,13 +1,17 @@
 <h1 align="center">
-  <img src=".github/assets/ui-design.png" height="250" alt="Adonis Web Kit">
+  🏨 Innkeeper
 </h1>
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/gabrielmaialva33/adonis-web-kit?color=00b8d3&style=flat-square" alt="License" />
-  <img src="https://img.shields.io/github/languages/top/gabrielmaialva33/adonis-web-kit?style=flat-square" alt="GitHub top language" >
-  <img src="https://img.shields.io/github/repo-size/gabrielmaialva33/adonis-web-kit?style=flat-square" alt="Repository size" >
-  <a href="https://github.com/gabrielmaialva33/adonis-web-kit/commits/main">
-    <img src="https://img.shields.io/github/last-commit/gabrielmaialva33/adonis-web-kit?style=flat-square" alt="GitHub last commit" >
+  <strong>A Modern Multi-Tenant Hotel Management System</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/license/gabrielmaialva33/innkeeper?color=00b8d3&style=flat-square" alt="License" />
+  <img src="https://img.shields.io/github/languages/top/gabrielmaialva33/innkeeper?style=flat-square" alt="GitHub top language" >
+  <img src="https://img.shields.io/github/repo-size/gabrielmaialva33/innkeeper?style=flat-square" alt="Repository size" >
+  <a href="https://github.com/gabrielmaialva33/innkeeper/commits/main">
+    <img src="https://img.shields.io/github/last-commit/gabrielmaialva33/innkeeper?style=flat-square" alt="GitHub last commit" >
   </a>
 </p>
 
@@ -19,156 +23,208 @@
 
 <p align="center">
   <a href="#bookmark-about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#rocket-ai-first-development">AI-First Development</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#computer-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#package-installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#sparkles-features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#hammer_and_wrench-installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-license">License</a>
 </p>
 
 ## :bookmark: About
 
-**Adonis Web Kit** is a modern, opinionated, and AI-first full-stack starter kit designed to accelerate the development of
-robust web applications. It combines a powerful **AdonisJS v6** backend with a dynamic **React 19** and **Inertia.js**
-frontend, all within a unified monorepo structure.
+**Innkeeper** is a comprehensive multi-tenant hotel management system designed to streamline and modernize hotel operations. Built on a robust foundation of **AdonisJS v6** backend and **React 19** with **Inertia.js** frontend, it provides a complete solution for managing multiple hotel properties from a single platform.
 
-This project is not just a collection of technologies; it's a foundation engineered for efficiency, scalability, and
-seamless collaboration with AI development partners. By providing a well-defined architecture with features like
-authentication, role-based access control (RBAC), and file management out of the box, it allows developers (both human
-and AI) to focus on building unique business logic instead of boilerplate code.
+This system addresses the complex needs of modern hospitality businesses, from small boutique hotels to large hotel chains. With its multi-tenant architecture, each hotel property maintains complete data isolation while benefiting from shared infrastructure and centralized management capabilities.
 
 ### 🏗️ Architecture Overview
 
 ```mermaid
 graph TD
-    subgraph "Frontend (Inertia.js)"
-        FE_UI[React Components & Pages]
-        FE_HOOKS["Hooks (useAuth, useApi)"]
-        FE_UTILS[Utilities & Types]
+    subgraph "Frontend (React + Inertia.js)"
+        FE_GUEST[Guest Portal]
+        FE_STAFF[Staff Dashboard]
+        FE_ADMIN[Admin Panel]
+        FE_SHARED[Shared Components]
     end
 
     subgraph "Backend (AdonisJS)"
-        BE_ROUTES[Routes]
-        BE_MW["Middleware (Auth, ACL)"]
-        BE_CTRL[Controllers]
-        BE_SERVICES[Services]
-        BE_REPOS[Repositories]
-        BE_MODELS[Lucid Models]
+        BE_API[API Layer]
+        BE_AUTH[Multi-Tenant Auth]
+        BE_BOOKING[Booking Engine]
+        BE_PMS[Property Management]
+        BE_BILLING[Billing System]
+        BE_REPORTS[Analytics & Reports]
     end
 
-    subgraph "Shared"
-        SHARED_TYPES[TypeScript Types]
-        SHARED_CONFIG[Config Files]
+    subgraph "Multi-Tenant Layer"
+        MT_RESOLVER[Tenant Resolver]
+        MT_ISOLATION[Data Isolation]
+        MT_CONFIG[Tenant Config]
     end
 
     subgraph "Data Layer"
         DB[(PostgreSQL)]
         CACHE[(Redis)]
+        STORAGE[(File Storage)]
     end
 
-    FE_UI --> BE_ROUTES
-    BE_ROUTES --> BE_MW
-    BE_MW --> BE_CTRL
-    BE_CTRL --> BE_SERVICES
-    BE_SERVICES --> BE_REPOS
-    BE_REPOS --> BE_MODELS
-    BE_MODELS --> DB
-
-    BE_SERVICES --> CACHE
-    FE_HOOKS --> BE_ROUTES
-
-    FE_UTILS --> SHARED_TYPES
-    BE_CTRL --> SHARED_TYPES
+    FE_GUEST --> BE_API
+    FE_STAFF --> BE_API
+    FE_ADMIN --> BE_API
+    
+    BE_API --> MT_RESOLVER
+    MT_RESOLVER --> BE_AUTH
+    MT_RESOLVER --> BE_BOOKING
+    MT_RESOLVER --> BE_PMS
+    MT_RESOLVER --> BE_BILLING
+    MT_RESOLVER --> BE_REPORTS
+    
+    BE_AUTH --> MT_ISOLATION
+    BE_BOOKING --> MT_ISOLATION
+    BE_PMS --> MT_ISOLATION
+    BE_BILLING --> MT_ISOLATION
+    BE_REPORTS --> MT_ISOLATION
+    
+    MT_ISOLATION --> DB
+    BE_BOOKING --> CACHE
+    BE_AUTH --> CACHE
+    BE_REPORTS --> STORAGE
 ```
 
-## :rocket: AI-First Development
+## :sparkles: Features
 
-This starter kit is uniquely designed to maximize the effectiveness of AI-assisted coding.
+### Core Hotel Management
+- **🏢 Multi-Tenant Architecture**: Manage multiple hotel properties with complete data isolation
+- **🛏️ Room Management**: Comprehensive room inventory, types, amenities, and pricing
+- **📅 Reservation System**: Advanced booking engine with real-time availability
+- **👥 Guest Management**: Complete guest profiles, preferences, and history
+- **💼 Front Desk Operations**: Check-in/out, room assignments, and walk-ins
+- **🧹 Housekeeping**: Room status tracking, cleaning schedules, and maintenance
+- **💰 Billing & Invoicing**: Flexible pricing, taxes, discounts, and payment processing
 
-- **Unified Context (Monorepo)**: Having backend and frontend code in a single repository provides a complete context
-  for AI tools, enabling them to generate more accurate and cohesive code that spans the full stack.
-- **Strongly-Typed Foundation**: End-to-end TypeScript usage creates a clear contract between the frontend, backend, and
-  API layers. This reduces ambiguity and allows AI to understand data structures and function signatures, leading to
-  fewer errors.
-- **Modular and Opinionated Architecture**: The clear separation of concerns (controllers, services, repositories) makes
-  it easy for an AI to locate, understand, and modify specific parts of the codebase with precision.
-- **Focus on Business Logic**: With boilerplate for authentication, permissions, and file storage already handled, AI
-  can be directed to solve higher-level business problems from day one.
+### Advanced Features
+- **📊 Analytics Dashboard**: Real-time occupancy, revenue, and performance metrics
+- **🔄 Channel Manager**: Integration with OTAs (Booking.com, Expedia, etc.)
+- **📱 Mobile-Responsive**: Full functionality across all devices
+- **🌐 Multi-Language Support**: Internationalization for global operations
+- **👷 Staff Management**: Roles, permissions, schedules, and task assignments
+- **📧 Communication Hub**: Automated emails, SMS notifications, and guest messaging
+- **🎯 Revenue Management**: Dynamic pricing and yield optimization
+- **🔗 Third-Party Integrations**: POS systems, door locks, and accounting software
 
-## 🌟 Key Features
+### Technical Features
+- **🔐 Role-Based Access Control**: Granular permissions for different user types
+- **🚀 Real-Time Updates**: WebSocket-powered live updates across the platform
+- **📈 Scalable Architecture**: Built to handle properties of any size
+- **🔒 Data Security**: End-to-end encryption and compliance with hospitality standards
+- **🔄 API-First Design**: RESTful API for easy integrations
+- **📱 Progressive Web App**: Installable on mobile devices
+- **🎨 Customizable UI**: Theming system for brand consistency
 
-- **🔐 Multi-Guard Authentication**: Ready-to-use JWT-based authentication.
-- **👥 Advanced Role-Based Access Control (RBAC)**: Manage user permissions with roles and fine-grained rules.
-- **📁 File Management**: Pre-configured file upload service with support for local and S3 drivers.
-- **⚡️ Full-Stack Reactivity**: The power of React combined with the simplicity of a traditional server-rendered app,
-  thanks to Inertia.js.
-- **🎨 UI Components**: A set of beautiful, reusable UI components built with `shadcn/ui`, Tailwind CSS, and
-  `lucide-react`.
-- **✅ Type-Safe API**: Auto-completion and type checking for API calls and props.
-- **🏥 Health Checks**: Integrated health check endpoint for monitoring.
+## :rocket: Technologies
 
-## :computer: Technologies
+### Backend
+- **[AdonisJS v6](https://adonisjs.com/)**: Enterprise-grade Node.js framework
+- **[PostgreSQL](https://www.postgresql.org/)**: Robust relational database with multi-tenant support
+- **[Redis](https://redis.io/)**: High-performance caching and session management
+- **[Bull Queue](https://github.com/OptimalBits/bull)**: Background job processing
+- **[JWT](https://jwt.io/)**: Secure authentication
 
-- **[AdonisJS v6](https://adonisjs.com/)**: A robust Node.js framework for the backend.
-- **[React 19](https://react.dev/)**: A powerful library for building user interfaces.
-- **[Inertia.js](https://inertiajs.com/)**: The glue that connects the modern frontend with the backend.
-- **[TypeScript](https://www.typescriptlang.org/)**: For type safety across the entire stack.
-- **[PostgreSQL](https://www.postgresql.org/)**: A reliable and powerful relational database.
-- **[Redis](https://redis.io/)**: Used for caching and session management.
-- **[Vite](https://vitejs.dev/)**: For a lightning-fast frontend development experience.
-- **[Tailwind CSS](https://tailwindcss.com/)**: A utility-first CSS framework for rapid UI development.
+### Frontend
+- **[React 19](https://react.dev/)**: Modern UI library
+- **[Inertia.js](https://inertiajs.com/)**: SPA experience without the complexity
+- **[TypeScript](https://www.typescriptlang.org/)**: Type-safe development
+- **[Tailwind CSS](https://tailwindcss.com/)**: Utility-first styling
+- **[shadcn/ui](https://ui.shadcn.com/)**: Beautiful, accessible components
+- **[Recharts](https://recharts.org/)**: Data visualization
 
-## :package: Installation
+### DevOps & Tools
+- **[Docker](https://www.docker.com/)**: Containerization
+- **[Vite](https://vitejs.dev/)**: Lightning-fast development
+- **[ESLint](https://eslint.org/)** & **[Prettier](https://prettier.io/)**: Code quality
+- **[Japa](https://japa.dev/)**: Testing framework
 
-### ✔️ Prerequisites
+## :hammer_and_wrench: Installation
 
+### Prerequisites
 - **Node.js** (v18 or higher)
-- **pnpm** (or npm/yarn)
-- **Docker** (for running PostgreSQL and Redis)
+- **pnpm** (recommended) or npm/yarn
+- **PostgreSQL** (v14 or higher)
+- **Redis** (v6 or higher)
+- **Docker** (optional, for containerized setup)
 
-### 🚀 Getting Started
+### Quick Start
 
 1. **Clone the repository:**
-
-   ```sh
-   git clone https://github.com/gabrielmaialva33/adonis-web-kit.git
-   cd adonis-web-kit
+   ```bash
+   git clone https://github.com/gabrielmaialva33/innkeeper.git
+   cd innkeeper
    ```
 
 2. **Install dependencies:**
-
-   ```sh
+   ```bash
    pnpm install
    ```
 
-3. **Setup environment variables:**
-
-   ```sh
+3. **Set up environment variables:**
+   ```bash
    cp .env.example .env
    ```
-
-   _Open the `.env` file and configure your database credentials and other settings._
+   
+   Configure your database, Redis, and other settings in the `.env` file.
 
 4. **Run database migrations:**
-
-   ```sh
+   ```bash
    node ace migration:run
    ```
 
-5. **Start the development server:**
-   ```sh
+5. **Seed initial data (optional):**
+   ```bash
+   node ace db:seed
+   ```
+
+6. **Start the development server:**
+   ```bash
    pnpm dev
    ```
-   _Your application will be available at `http://localhost:3333`._
+   
+   Your application will be available at `http://localhost:3333`
 
-### 📜 Available Scripts
+### Docker Setup
 
-- `pnpm dev`: Starts the development server with HMR.
-- `pnpm build`: Compiles the application for production.
-- `pnpm start`: Runs the production-ready server.
-- `pnpm test`: Executes unit tests.
-- `pnpm test:e2e`: Executes end-to-end tests.
-- `pnpm lint`: Lints the codebase.
-- `pnpm format`: Formats the code with Prettier.
+For a containerized environment:
+
+```bash
+docker-compose up -d
+pnpm docker
+```
+
+### Production Deployment
+
+1. **Build the application:**
+   ```bash
+   pnpm build
+   ```
+
+2. **Run migrations in production:**
+   ```bash
+   node ace migration:run --force
+   ```
+
+3. **Start the production server:**
+   ```bash
+   pnpm start
+   ```
+
+## :books: Documentation
+
+For detailed documentation, visit our [Wiki](https://github.com/gabrielmaialva33/innkeeper/wiki) or check the `/docs` folder.
+
+### API Documentation
+API documentation is available at `/api/docs` when running in development mode.
+
+## :handshake: Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## :memo: License
 
@@ -177,5 +233,5 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ---
 
 <p align="center">
-  Made with ❤️ by the community.
+  Built with ❤️ for the hospitality industry
 </p>
