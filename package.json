@@ -1,6 +1,7 @@
 {
-  "name": "adonis-web-kit",
+  "name": "innkeeper",
   "version": "0.0.0",
+  "description": "A modern multi-tenant hotel management system built with AdonisJS and React",
   "private": true,
   "type": "module",
   "license": "UNLICENSED",
