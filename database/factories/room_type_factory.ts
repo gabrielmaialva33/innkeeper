@@ -117,7 +117,6 @@ export const RoomTypeFactory = factory
         floor: faker.helpers.arrayElement(['lower', 'middle', 'upper', 'any']),
         smoking_allowed: faker.datatype.boolean({ probability: 0.1 }),
       },
-      is_active: true,
     }
   })
   .relation('hotel', () => HotelFactory)
