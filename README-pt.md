@@ -70,20 +70,20 @@ graph TD
     FE_GUEST --> BE_API
     FE_STAFF --> BE_API
     FE_ADMIN --> BE_API
-    
+
     BE_API --> MT_RESOLVER
     MT_RESOLVER --> BE_AUTH
     MT_RESOLVER --> BE_BOOKING
     MT_RESOLVER --> BE_PMS
     MT_RESOLVER --> BE_BILLING
     MT_RESOLVER --> BE_REPORTS
-    
+
     BE_AUTH --> MT_ISOLATION
     BE_BOOKING --> MT_ISOLATION
     BE_PMS --> MT_ISOLATION
     BE_BILLING --> MT_ISOLATION
     BE_REPORTS --> MT_ISOLATION
-    
+
     MT_ISOLATION --> DB
     BE_BOOKING --> CACHE
     BE_AUTH --> CACHE
@@ -93,6 +93,7 @@ graph TD
 ## :sparkles: Funcionalidades
 
 ### Gerenciamento Hoteleiro Principal
+
 - **🏢 Arquitetura Multi-Tenant**: Gerencie múltiplas propriedades hoteleiras com isolamento completo de dados
 - **🛏️ Gestão de Quartos**: Inventário completo de quartos, tipos, comodidades e preços
 - **📅 Sistema de Reservas**: Motor de reservas avançado com disponibilidade em tempo real
@@ -102,6 +103,7 @@ graph TD
 - **💰 Faturamento e Cobrança**: Preços flexíveis, impostos, descontos e processamento de pagamentos
 
 ### Funcionalidades Avançadas
+
 - **📊 Painel de Análises**: Métricas de ocupação, receita e desempenho em tempo real
 - **🔄 Gerenciador de Canais**: Integração com OTAs (Booking.com, Expedia, etc.)
 - **📱 Mobile-Responsive**: Funcionalidade completa em todos os dispositivos
@@ -112,6 +114,7 @@ graph TD
 - **🔗 Integrações de Terceiros**: Sistemas POS, fechaduras de portas e software de contabilidade
 
 ### Funcionalidades Técnicas
+
 - **🔐 Controle de Acesso Baseado em Papéis**: Permissões granulares para diferentes tipos de usuários
 - **🚀 Atualizações em Tempo Real**: Atualizações ao vivo via WebSocket em toda a plataforma
 - **📈 Arquitetura Escalável**: Construída para lidar com propriedades de qualquer tamanho
@@ -123,6 +126,7 @@ graph TD
 ## :rocket: Tecnologias
 
 ### Backend
+
 - **[AdonisJS v6](https://adonisjs.com/)**: Framework Node.js de nível empresarial
 - **[PostgreSQL](https://www.postgresql.org/)**: Banco de dados relacional robusto com suporte multi-tenant
 - **[Redis](https://redis.io/)**: Cache de alto desempenho e gerenciamento de sessões
@@ -130,6 +134,7 @@ graph TD
 - **[JWT](https://jwt.io/)**: Autenticação segura
 
 ### Frontend
+
 - **[React 19](https://react.dev/)**: Biblioteca moderna de UI
 - **[Inertia.js](https://inertiajs.com/)**: Experiência SPA sem a complexidade
 - **[TypeScript](https://www.typescriptlang.org/)**: Desenvolvimento type-safe
@@ -138,6 +143,7 @@ graph TD
 - **[Recharts](https://recharts.org/)**: Visualização de dados
 
 ### DevOps & Ferramentas
+
 - **[Docker](https://www.docker.com/)**: Containerização
 - **[Vite](https://vitejs.dev/)**: Desenvolvimento ultrarrápido
 - **[ESLint](https://eslint.org/)** & **[Prettier](https://prettier.io/)**: Qualidade de código
@@ -146,6 +152,7 @@ graph TD
 ## :hammer_and_wrench: Instalação
 
 ### Pré-requisitos
+
 - **Node.js** (v18 ou superior)
 - **pnpm** (recomendado) ou npm/yarn
 - **PostgreSQL** (v14 ou superior)
@@ -155,38 +162,44 @@ graph TD
 ### Início Rápido
 
 1. **Clone o repositório:**
+
    ```bash
    git clone https://github.com/gabrielmaialva33/innkeeper.git
    cd innkeeper
    ```
 
 2. **Instale as dependências:**
+
    ```bash
    pnpm install
    ```
 
 3. **Configure as variáveis de ambiente:**
+
    ```bash
    cp .env.example .env
    ```
-   
+
    Configure seu banco de dados, Redis e outras configurações no arquivo `.env`.
 
 4. **Execute as migrações do banco de dados:**
+
    ```bash
    node ace migration:run
    ```
 
 5. **Popule dados iniciais (opcional):**
+
    ```bash
    node ace db:seed
    ```
 
 6. **Inicie o servidor de desenvolvimento:**
+
    ```bash
    pnpm dev
    ```
-   
+
    Sua aplicação estará disponível em `http://localhost:3333`
 
 ### Configuração com Docker
@@ -201,11 +214,13 @@ pnpm docker
 ### Deploy em Produção
 
 1. **Compile a aplicação:**
+
    ```bash
    pnpm build
    ```
 
 2. **Execute as migrações em produção:**
+
    ```bash
    node ace migration:run --force
    ```
@@ -220,6 +235,7 @@ pnpm docker
 Para documentação detalhada, visite nossa [Wiki](https://github.com/gabrielmaialva33/innkeeper/wiki) ou verifique a pasta `/docs`.
 
 ### Documentação da API
+
 A documentação da API está disponível em `/api/docs` quando executada em modo de desenvolvimento.
 
 ## :handshake: Contribuindo

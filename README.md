@@ -70,20 +70,20 @@ graph TD
     FE_GUEST --> BE_API
     FE_STAFF --> BE_API
     FE_ADMIN --> BE_API
-    
+
     BE_API --> MT_RESOLVER
     MT_RESOLVER --> BE_AUTH
     MT_RESOLVER --> BE_BOOKING
     MT_RESOLVER --> BE_PMS
     MT_RESOLVER --> BE_BILLING
     MT_RESOLVER --> BE_REPORTS
-    
+
     BE_AUTH --> MT_ISOLATION
     BE_BOOKING --> MT_ISOLATION
     BE_PMS --> MT_ISOLATION
     BE_BILLING --> MT_ISOLATION
     BE_REPORTS --> MT_ISOLATION
-    
+
     MT_ISOLATION --> DB
     BE_BOOKING --> CACHE
     BE_AUTH --> CACHE
@@ -93,6 +93,7 @@ graph TD
 ## :sparkles: Features
 
 ### Core Hotel Management
+
 - **🏢 Multi-Tenant Architecture**: Manage multiple hotel properties with complete data isolation
 - **🛏️ Room Management**: Comprehensive room inventory, types, amenities, and pricing
 - **📅 Reservation System**: Advanced booking engine with real-time availability
@@ -102,6 +103,7 @@ graph TD
 - **💰 Billing & Invoicing**: Flexible pricing, taxes, discounts, and payment processing
 
 ### Advanced Features
+
 - **📊 Analytics Dashboard**: Real-time occupancy, revenue, and performance metrics
 - **🔄 Channel Manager**: Integration with OTAs (Booking.com, Expedia, etc.)
 - **📱 Mobile-Responsive**: Full functionality across all devices
@@ -112,6 +114,7 @@ graph TD
 - **🔗 Third-Party Integrations**: POS systems, door locks, and accounting software
 
 ### Technical Features
+
 - **🔐 Role-Based Access Control**: Granular permissions for different user types
 - **🚀 Real-Time Updates**: WebSocket-powered live updates across the platform
 - **📈 Scalable Architecture**: Built to handle properties of any size
@@ -123,6 +126,7 @@ graph TD
 ## :rocket: Technologies
 
 ### Backend
+
 - **[AdonisJS v6](https://adonisjs.com/)**: Enterprise-grade Node.js framework
 - **[PostgreSQL](https://www.postgresql.org/)**: Robust relational database with multi-tenant support
 - **[Redis](https://redis.io/)**: High-performance caching and session management
@@ -130,6 +134,7 @@ graph TD
 - **[JWT](https://jwt.io/)**: Secure authentication
 
 ### Frontend
+
 - **[React 19](https://react.dev/)**: Modern UI library
 - **[Inertia.js](https://inertiajs.com/)**: SPA experience without the complexity
 - **[TypeScript](https://www.typescriptlang.org/)**: Type-safe development
@@ -138,6 +143,7 @@ graph TD
 - **[Recharts](https://recharts.org/)**: Data visualization
 
 ### DevOps & Tools
+
 - **[Docker](https://www.docker.com/)**: Containerization
 - **[Vite](https://vitejs.dev/)**: Lightning-fast development
 - **[ESLint](https://eslint.org/)** & **[Prettier](https://prettier.io/)**: Code quality
@@ -146,6 +152,7 @@ graph TD
 ## :hammer_and_wrench: Installation
 
 ### Prerequisites
+
 - **Node.js** (v18 or higher)
 - **pnpm** (recommended) or npm/yarn
 - **PostgreSQL** (v14 or higher)
@@ -155,38 +162,44 @@ graph TD
 ### Quick Start
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/gabrielmaialva33/innkeeper.git
    cd innkeeper
    ```
 
 2. **Install dependencies:**
+
    ```bash
    pnpm install
    ```
 
 3. **Set up environment variables:**
+
    ```bash
    cp .env.example .env
    ```
-   
+
    Configure your database, Redis, and other settings in the `.env` file.
 
 4. **Run database migrations:**
+
    ```bash
    node ace migration:run
    ```
 
 5. **Seed initial data (optional):**
+
    ```bash
    node ace db:seed
    ```
 
 6. **Start the development server:**
+
    ```bash
    pnpm dev
    ```
-   
+
    Your application will be available at `http://localhost:3333`
 
 ### Docker Setup
@@ -201,11 +214,13 @@ pnpm docker
 ### Production Deployment
 
 1. **Build the application:**
+
    ```bash
    pnpm build
    ```
 
 2. **Run migrations in production:**
+
    ```bash
    node ace migration:run --force
    ```
@@ -220,6 +235,7 @@ pnpm docker
 For detailed documentation, visit our [Wiki](https://github.com/gabrielmaialva33/innkeeper/wiki) or check the `/docs` folder.
 
 ### API Documentation
+
 API documentation is available at `/api/docs` when running in development mode.
 
 ## :handshake: Contributing

@@ -147,6 +147,7 @@ Uses Japa testing framework with API client and OpenAPI assertion support.
 Services are organized by domain with specific use cases:
 
 **Core Hotel Domains:**
+
 - `app/services/hotels/` - Hotel property management
 - `app/services/rooms/` - Room inventory and management
 - `app/services/reservations/` - Booking and reservation handling
@@ -158,6 +159,7 @@ Services are organized by domain with specific use cases:
 - `app/services/channels/` - OTA integrations
 
 **System Services:**
+
 - `app/services/users/` - User-related operations
 - `app/services/permissions/` - Permission management
 - `app/services/roles/` - Role management
@@ -393,12 +395,14 @@ await loadHelpers() // Access helpers module
 ## Hotel Management Domain Guidelines
 
 ### Multi-Tenant Considerations
+
 1. **Tenant Isolation**: Always ensure data queries include tenant context
 2. **Tenant Resolution**: Use middleware to resolve tenant from subdomain or header
 3. **Shared Resources**: Distinguish between tenant-specific and shared data
 4. **Migration Strategy**: Consider tenant-aware migrations
 
 ### Hotel-Specific Patterns
+
 1. **Availability Checking**: Use Redis for real-time room availability
 2. **Rate Management**: Implement dynamic pricing with seasonal rates
 3. **Reservation States**: Handle pending, confirmed, checked-in, checked-out states
@@ -406,6 +410,7 @@ await loadHelpers() // Access helpers module
 5. **Channel Sync**: Queue-based synchronization with external booking platforms
 
 ### Common Hotel Operations
+
 1. **Night Audit**: Daily closing and report generation
 2. **Group Bookings**: Handle multiple rooms for single reservation
 3. **Walk-ins**: Direct bookings without prior reservation
