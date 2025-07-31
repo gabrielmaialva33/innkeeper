@@ -12,6 +12,7 @@ export const OrganizationFactory = factory
     return {
       name,
       slug: faker.helpers.slugify(name).toLowerCase(),
+      email: faker.internet.email({ provider: faker.helpers.slugify(name).toLowerCase() + '.com' }),
       settings: {
         overbooking_percentage: faker.number.int({ min: 5, max: 15 }),
         default_check_in_time: faker.helpers.arrayElement(['14:00', '15:00', '16:00']),
