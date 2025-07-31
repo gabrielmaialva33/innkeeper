@@ -9,6 +9,7 @@ import {
   beforeFind,
   beforePaginate,
   beforeSave,
+  belongsTo,
   column,
   manyToMany,
   SnakeCaseNamingStrategy,
@@ -16,9 +17,10 @@ import {
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import * as model from '@adonisjs/lucid/types/model'
-import type { ManyToMany } from '@adonisjs/lucid/types/relations'
+import type { BelongsTo, ManyToMany } from '@adonisjs/lucid/types/relations'
 import Role from '#models/role'
 import Permission from '#models/permission'
+import Organization from '#models/organization'
 import IRole from '#interfaces/role_interface'
 
 const AuthFinder = withAuthFinder(() => hash.use('argon'), {
@@ -55,6 +57,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @column({ serializeAs: null })
   declare password: string
+
+  @column()
+  declare organization_id: number | null
 
   @column({ serializeAs: null })
   declare is_deleted: boolean
@@ -97,6 +102,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
     pivotColumns: ['granted', 'expires_at'],
   })
   declare permissions: ManyToMany<typeof Permission>
+
+  @belongsTo(() => Organization)
+  declare organization: BelongsTo<typeof Organization>
 
   /**
    * ------------------------------------------------------
