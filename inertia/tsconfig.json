@@ -1,0 +1,13 @@
+{
+  "extends": "@adonisjs/tsconfig/tsconfig.client.json",
+  "compilerOptions": {
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "paths": {
+      "~/*": ["./*"]
+    }
+  },
+  "include": ["./**/*.ts", "./**/*.tsx"]
+}

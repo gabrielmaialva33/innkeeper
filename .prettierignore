@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+build/
+dist/
+public/
+
+# Lock files
+pnpm-lock.yaml
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+
+# IDE
+.idea
+.vscode
+
+# Temporary files
+tmp/
+*.tmp
+
+# Cache
+.cache/

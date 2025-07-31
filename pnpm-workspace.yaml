@@ -1,0 +1,11 @@
+packages:
+  - .
+
+onlyBuiltDependencies:
+  - '@swc/core'
+  - '@tailwindcss/oxide'
+  - argon2
+  - better-sqlite3
+  - esbuild
+  - msgpackr-extract
+  - msw
