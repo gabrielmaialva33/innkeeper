@@ -6,42 +6,126 @@ import { HotelFactory } from './hotel_factory.js'
 import { RoomFactory } from './room_factory.js'
 import { GuestFactory } from './guest_factory.js'
 import { UserFactory } from './user_factory.js'
+import { PricingHelper } from '../helpers/pricing_helper.js'
+import { DataCorrelations } from '../helpers/data_correlations.js'
 
 export const ReservationFactory = factory
   .define(Reservation, async ({ faker }: FactoryContextContract) => {
-    // Generated a check-in date between 30 days ago and 60 days in the future
-    const checkInDate = faker.date.between({
-      from: DateTime.now().minus({ days: 30 }).toJSDate(),
-      to: DateTime.now().plus({ days: 60 }).toJSDate(),
+    // First, determine the guest type to correlate all data
+    const guestType = faker.helpers.weightedArrayElement([
+      { value: 'regular', weight: 40 },
+      { value: 'corporate', weight: 25 },
+      { value: 'family', weight: 20 },
+      { value: 'vip', weight: 10 },
+      { value: 'firstTime', weight: 5 },
+    ])
+
+    // Get guest profile for correlations
+    const guestProfile = DataCorrelations.GUEST_PROFILES[guestType]
+
+    // Determine purpose of visit based on guest type
+    const purposeOfVisit =
+      guestType === 'corporate'
+        ? faker.helpers.weightedArrayElement([
+            { value: 'business', weight: 80 },
+            { value: 'event', weight: 20 },
+          ])
+        : faker.helpers.weightedArrayElement([
+            { value: 'leisure', weight: 70 },
+            { value: 'event', weight: 20 },
+            { value: 'other', weight: 10 },
+          ])
+
+    // Calculate booking lead time based on guest behavior
+    const bookingLeadTime = faker.number.int({
+      min: Math.max(0, guestProfile.behavior.bookingLeadTime - 10),
+      max: guestProfile.behavior.bookingLeadTime + 20,
     })
 
-    // Generate stay duration (1-14 nights, weighted towards shorter stays)
-    const stayNights = faker.helpers.weightedArrayElement([
-      { value: 1, weight: 20 },
-      { value: 2, weight: 30 },
-      { value: 3, weight: 20 },
-      { value: 4, weight: 10 },
-      { value: 5, weight: 8 },
-      { value: 6, weight: 5 },
-      { value: 7, weight: 4 },
-      { value: faker.number.int({ min: 8, max: 14 }), weight: 3 },
-    ])
+    // Generate check-in date
+    const checkInDate = DateTime.now().plus({ days: bookingLeadTime }).toJSDate()
+
+    // Get stay pattern based on guest type and purpose
+    const stayPattern = DataCorrelations.getStayPattern(guestType, purposeOfVisit)
+    const stayNights = faker.number.int({
+      min: stayPattern.minNights,
+      max: stayPattern.maxNights,
+    })
 
     const checkOutDate = DateTime.fromJSDate(checkInDate).plus({ days: stayNights }).toJSDate()
 
-    // Generate number of guests
-    const adults = faker.number.int({ min: 1, max: 4 })
-    const children = faker.datatype.boolean({ probability: 0.3 })
-      ? faker.number.int({ min: 1, max: 3 })
-      : 0
+    // Determine number of guests based on type
+    let adults = 1
+    let children = 0
+    let infants = 0
 
-    // Base price calculation (will be overridden based on room type)
-    const basePrice = faker.number.float({ min: 100, max: 500, fractionDigits: 2 })
-    const nightlyRate = basePrice
-    const subtotal = nightlyRate * stayNights
-    const taxRate = faker.number.float({ min: 0.08, max: 0.15, fractionDigits: 4 })
+    if (guestType === 'family') {
+      adults = faker.number.int({ min: 2, max: 2 })
+      children = faker.number.int({ min: 1, max: 3 })
+      infants = faker.datatype.boolean({ probability: 0.3 }) ? 1 : 0
+    } else if (guestType === 'corporate') {
+      adults = faker.helpers.weightedArrayElement([
+        { value: 1, weight: 80 },
+        { value: 2, weight: 20 },
+      ])
+    } else {
+      adults = faker.number.int({ min: 1, max: 4 })
+      children = faker.datatype.boolean({ probability: 0.1 })
+        ? faker.number.int({ min: 1, max: 2 })
+        : 0
+    }
+
+    // Room type preference based on guest profile
+    const roomTypeCategory = faker.helpers.arrayElement(guestProfile.preferences.roomTypes) as
+      | 'economy'
+      | 'standard'
+      | 'deluxe'
+      | 'suite'
+      | 'presidential'
+
+    // Base price for room type
+    const basePrices = {
+      economy: 80,
+      standard: 120,
+      deluxe: 200,
+      suite: 350,
+      presidential: 800,
+    }
+    const basePrice = basePrices[roomTypeCategory]
+
+    // Generate occupancy rate (will be provided by hotel in real implementation)
+    const occupancyRate = PricingHelper.generateOccupancyRate(
+      DateTime.fromJSDate(checkInDate),
+      'city'
+    )
+
+    // Calculate dynamic price
+    const dynamicPrice = PricingHelper.calculateDynamicPrice({
+      basePrice,
+      checkInDate: DateTime.fromJSDate(checkInDate),
+      checkOutDate: DateTime.fromJSDate(checkOutDate),
+      occupancyRate,
+      roomTypeCategory,
+      bookingLeadTime,
+      stayLength: stayNights,
+    })
+
+    // Calculate totals
+    const subtotal = dynamicPrice * stayNights
+    const taxRate = 0.12 // 12% tax
     const taxAmount = subtotal * taxRate
-    const totalAmount = subtotal + taxAmount
+
+    // Apply discounts based on guest type and length of stay
+    let discountAmount = 0
+    if (guestType === 'vip') {
+      discountAmount = subtotal * 0.1 // 10% VIP discount
+    } else if (guestType === 'corporate' && stayNights >= 5) {
+      discountAmount = subtotal * 0.15 // 15% corporate extended stay
+    } else if (stayNights >= 7) {
+      discountAmount = subtotal * 0.1 // 10% weekly stay
+    }
+
+    const totalAmount = subtotal + taxAmount - discountAmount
 
     const confirmationCode = faker.string.alphanumeric({ length: 8, casing: 'upper' })
 
@@ -58,7 +142,7 @@ export const ReservationFactory = factory
       check_out_date: DateTime.fromJSDate(checkOutDate),
       adults,
       children,
-      infants: 0,
+      infants,
       status: faker.helpers.weightedArrayElement([
         { value: 'confirmed', weight: 50 },
         { value: 'pending', weight: 10 },
@@ -67,56 +151,83 @@ export const ReservationFactory = factory
         { value: 'cancelled', weight: 4 },
         { value: 'no_show', weight: 1 },
       ]),
-      special_requests: faker.datatype.boolean({ probability: 0.4 })
-        ? faker.helpers.arrayElement([
-            'Late check-in after 10 PM',
-            'Early check-in requested',
-            'High floor room preferred',
-            'Quiet room away from elevator',
-            'Celebrating anniversary',
-            'Birthday celebration - please add cake',
-            'Extra towels and pillows',
-            'Crib needed for infant',
-            'Adjoining rooms if possible',
-          ])
-        : null,
-      arrival_time: faker.helpers.arrayElement([
-        '14:00',
-        '15:00',
-        '16:00',
-        '17:00',
-        '18:00',
-        '19:00',
-        '20:00',
-      ]),
-      purpose_of_visit: faker.helpers.arrayElement(['leisure', 'business', 'event', 'other']),
-      room_rate: nightlyRate,
+      special_requests: (() => {
+        const requests = DataCorrelations.getSpecialRequests(guestType)
+        const selectedRequest = faker.helpers.weightedArrayElement(
+          requests.map(r => ({ value: r.request, weight: r.probability * 100 }))
+        )
+        return faker.datatype.boolean({ probability: 0.4 }) ? selectedRequest : null
+      })(),
+      arrival_time: (() => {
+        const dayOfWeek = DateTime.fromJSDate(checkInDate).weekday
+        const patterns = DataCorrelations.getCheckInPattern(guestType, dayOfWeek)
+        return faker.helpers.weightedArrayElement(
+          patterns.map(p => ({ value: p.time, weight: p.probability * 100 }))
+        )
+      })(),
+      purpose_of_visit: purposeOfVisit as 'leisure' | 'business' | 'event' | 'other',
+      room_rate: dynamicPrice,
       total_amount: totalAmount,
-      paid_amount: faker.datatype.boolean({ probability: 0.7 })
-        ? faker.number.float({ min: 50, max: 200, fractionDigits: 2 })
-        : 0,
-      discount_amount: 0,
+      paid_amount: (() => {
+        // Payment based on booking behavior and guest type
+        const depositRate = 0.2 // 20% deposit default
+        
+        if (guestType === 'vip' || guestType === 'corporate') {
+          // VIP and corporate usually pay deposit
+          return totalAmount * depositRate
+        } else if (bookingLeadTime === 0) {
+          // Walk-in or same day bookings typically pay full
+          return totalAmount
+        } else {
+          // Regular bookings may or may not have deposit
+          return faker.datatype.boolean({ probability: 0.7 }) 
+            ? totalAmount * depositRate 
+            : 0
+        }
+      })(),
+      discount_amount: discountAmount,
       tax_amount: taxAmount,
       currency: 'USD',
-      channel: faker.helpers.arrayElement([
-        'direct',
-        'website',
-        'phone',
-        'walkin',
-        'ota',
-        'corporate',
-      ]) as 'direct' | 'website' | 'phone' | 'walkin' | 'ota' | 'corporate',
-      channel_reference: null,
+      channel: (() => {
+        // Determine channel based on guest type and booking lead time
+        if (guestType === 'corporate') {
+          return 'corporate' as const
+        } else if (bookingLeadTime === 0) {
+          return faker.helpers.weightedArrayElement([
+            { value: 'walkin' as const, weight: 70 },
+            { value: 'phone' as const, weight: 30 },
+          ])
+        } else if (bookingLeadTime > 30) {
+          return faker.helpers.weightedArrayElement([
+            { value: 'ota' as const, weight: 50 },
+            { value: 'website' as const, weight: 30 },
+            { value: 'direct' as const, weight: 20 },
+          ])
+        } else {
+          return faker.helpers.weightedArrayElement([
+            { value: 'website' as const, weight: 40 },
+            { value: 'ota' as const, weight: 30 },
+            { value: 'phone' as const, weight: 20 },
+            { value: 'direct' as const, weight: 10 },
+          ])
+        }
+      })(),
+      channel_reference: (() => {
+        const channel = guestType === 'corporate' ? 'corporate' : 
+                       bookingLeadTime === 0 ? 'walkin' : 'ota'
+        if (channel === 'ota') {
+          return faker.helpers.arrayElement(['BKG', 'EXP', 'AGD']) + faker.string.numeric(8)
+        } else if (channel === 'corporate') {
+          return 'CORP-' + faker.string.alphanumeric({ length: 6, casing: 'upper' })
+        }
+        return null
+      })(),
       payment_status: 'pending' as const,
-      payment_method: faker.helpers.arrayElement([
-        'cash',
-        'card',
-        'bank_transfer',
-        'online',
-        'other',
-      ]) as 'cash' | 'card' | 'bank_transfer' | 'online' | 'other',
-      is_vip: faker.datatype.boolean({ probability: 0.05 }),
-      requires_pickup: faker.datatype.boolean({ probability: 0.2 }),
+      payment_method: DataCorrelations.getPaymentMethod(guestType, totalAmount) as 'cash' | 'card' | 'bank_transfer' | 'online' | 'other',
+      is_vip: guestType === 'vip',
+      requires_pickup: guestType === 'vip' ? faker.datatype.boolean({ probability: 0.5 }) : 
+                      guestType === 'corporate' ? faker.datatype.boolean({ probability: 0.3 }) :
+                      faker.datatype.boolean({ probability: 0.1 }),
       pickup_location: null,
       pickup_time: null,
       actual_check_in: null,
@@ -129,31 +240,68 @@ export const ReservationFactory = factory
         additional_guests: [],
       },
       metadata: {
+        // Booking source information
         booking_ip: faker.internet.ipv4(),
         browser: faker.helpers.arrayElement(['Chrome', 'Safari', 'Firefox', 'Edge']),
-        device: faker.helpers.arrayElement(['desktop', 'mobile', 'tablet']),
-        referrer: faker.helpers.arrayElement([
-          'google',
-          'direct',
-          'social_media',
-          'email_campaign',
-        ]),
-        promo_code: faker.datatype.boolean({ probability: 0.2 })
+        device: guestType === 'corporate' 
+          ? faker.helpers.weightedArrayElement([
+              { value: 'desktop', weight: 70 },
+              { value: 'mobile', weight: 25 },
+              { value: 'tablet', weight: 5 },
+            ])
+          : faker.helpers.weightedArrayElement([
+              { value: 'mobile', weight: 50 },
+              { value: 'desktop', weight: 35 },
+              { value: 'tablet', weight: 15 },
+            ]),
+        referrer: guestType === 'corporate'
+          ? 'corporate_portal'
+          : faker.helpers.arrayElement(['google', 'direct', 'social_media', 'email_campaign']),
+        
+        // Pricing details
+        base_rate: basePrice,
+        dynamic_pricing: {
+          final_rate: dynamicPrice,
+          nights: stayNights,
+          total_before_tax: subtotal,
+          discount_percentage: discountAmount > 0 ? (discountAmount / subtotal) * 100 : 0,
+        },
+        occupancy_rate: occupancyRate,
+        
+        // Guest information
+        guest_type: guestType,
+        is_repeat_guest: guestType === 'regular' || (guestType === 'vip' && faker.datatype.boolean({ probability: 0.8 })),
+        loyalty_member: guestType === 'vip' || (guestType === 'regular' && faker.datatype.boolean({ probability: 0.6 })),
+        
+        // Rate and promotional information
+        special_rate: guestType === 'corporate' ? 'corporate' : 
+                     guestType === 'vip' ? 'vip' : 
+                     faker.helpers.arrayElement(['standard', 'aaa', 'senior', 'promotional']),
+        promo_code: guestType === 'firstTime' && faker.datatype.boolean({ probability: 0.4 })
+          ? 'FIRST10'
+          : faker.datatype.boolean({ probability: 0.15 })
           ? faker.string.alphanumeric({ length: 6, casing: 'upper' })
           : null,
-        is_repeat_guest: faker.datatype.boolean({ probability: 0.3 }),
-        special_rate: faker.helpers.arrayElement([
-          'standard',
-          'corporate',
-          'government',
-          'aaa',
-          'senior',
-        ]),
+        
+        // Room preferences from guest profile
         room_preferences: {
-          bed_type: faker.helpers.arrayElement(['king', 'queen', 'twin']),
-          floor: faker.helpers.arrayElement(['high', 'low', 'any']),
+          bed_type: guestProfile.preferences.bedType,
+          floor: guestProfile.preferences.floorPreference,
           view: faker.helpers.arrayElement(['ocean', 'city', 'garden', 'any']),
-          smoking: false,
+          smoking: guestProfile.preferences.smokingPreference,
+          amenities: faker.helpers.arrayElements(
+            guestProfile.preferences.amenityPriorities,
+            { min: 0, max: 3 }
+          ),
+        },
+        
+        // Additional context
+        booking_context: {
+          lead_time_days: bookingLeadTime,
+          stay_nights: stayNights,
+          total_guests: adults + children + infants,
+          has_children: children > 0,
+          has_infants: infants > 0,
         },
       },
     }
