@@ -123,16 +123,24 @@ export default class Payment extends BaseModel {
    * Relationships
    * ------------------------------------------------------
    */
-  @belongsTo(() => Organization)
+  @belongsTo(() => Organization, {
+    foreignKey: 'organization_id',
+  })
   declare organization: BelongsTo<typeof Organization>
 
-  @belongsTo(() => Reservation)
+  @belongsTo(() => Reservation, {
+    foreignKey: 'reservation_id',
+  })
   declare reservation: BelongsTo<typeof Reservation>
 
-  @belongsTo(() => Folio)
+  @belongsTo(() => Folio, {
+    foreignKey: 'folio_id',
+  })
   declare folio: BelongsTo<typeof Folio>
 
-  @belongsTo(() => Guest)
+  @belongsTo(() => Guest, {
+    foreignKey: 'guest_id',
+  })
   declare guest: BelongsTo<typeof Guest>
 
   @belongsTo(() => User, {

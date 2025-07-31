@@ -181,16 +181,24 @@ export default class Reservation extends BaseModel {
    * Relationships
    * ------------------------------------------------------
    */
-  @belongsTo(() => Organization)
+  @belongsTo(() => Organization, {
+    foreignKey: 'organization_id',
+  })
   declare organization: BelongsTo<typeof Organization>
 
-  @belongsTo(() => Hotel)
+  @belongsTo(() => Hotel, {
+    foreignKey: 'hotel_id',
+  })
   declare hotel: BelongsTo<typeof Hotel>
 
-  @belongsTo(() => Room)
+  @belongsTo(() => Room, {
+    foreignKey: 'room_id',
+  })
   declare room: BelongsTo<typeof Room>
 
-  @belongsTo(() => Guest)
+  @belongsTo(() => Guest, {
+    foreignKey: 'guest_id',
+  })
   declare guest: BelongsTo<typeof Guest>
 
   @belongsTo(() => User, {

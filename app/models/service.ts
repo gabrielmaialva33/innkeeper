@@ -106,10 +106,14 @@ export default class Service extends BaseModel {
    * Relationships
    * ------------------------------------------------------
    */
-  @belongsTo(() => Organization)
+  @belongsTo(() => Organization, {
+    foreignKey: 'organization_id',
+  })
   declare organization: BelongsTo<typeof Organization>
 
-  @belongsTo(() => Hotel)
+  @belongsTo(() => Hotel, {
+    foreignKey: 'hotel_id',
+  })
   declare hotel: BelongsTo<typeof Hotel>
 
   @manyToMany(() => Reservation, {

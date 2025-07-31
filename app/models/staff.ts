@@ -94,10 +94,14 @@ export default class Staff extends BaseModel {
    * Relationships
    * ------------------------------------------------------
    */
-  @belongsTo(() => Organization)
+  @belongsTo(() => Organization, {
+    foreignKey: 'organization_id',
+  })
   declare organization: BelongsTo<typeof Organization>
 
-  @belongsTo(() => User)
+  @belongsTo(() => User, {
+    foreignKey: 'user_id',
+  })
   declare user: BelongsTo<typeof User>
 
   @manyToMany(() => Hotel, {

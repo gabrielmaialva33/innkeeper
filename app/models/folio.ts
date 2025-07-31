@@ -95,13 +95,19 @@ export default class Folio extends BaseModel {
    * Relationships
    * ------------------------------------------------------
    */
-  @belongsTo(() => Organization)
+  @belongsTo(() => Organization, {
+    foreignKey: 'organization_id',
+  })
   declare organization: BelongsTo<typeof Organization>
 
-  @belongsTo(() => Reservation)
+  @belongsTo(() => Reservation, {
+    foreignKey: 'reservation_id',
+  })
   declare reservation: BelongsTo<typeof Reservation>
 
-  @belongsTo(() => Guest)
+  @belongsTo(() => Guest, {
+    foreignKey: 'guest_id',
+  })
   declare guest: BelongsTo<typeof Guest>
 
   @belongsTo(() => User, {

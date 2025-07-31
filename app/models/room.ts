@@ -99,10 +99,14 @@ export default class Room extends BaseModel {
    * Relationships
    * ------------------------------------------------------
    */
-  @belongsTo(() => Hotel)
+  @belongsTo(() => Hotel, {
+    foreignKey: 'hotel_id',
+  })
   declare hotel: BelongsTo<typeof Hotel>
 
-  @belongsTo(() => RoomType)
+  @belongsTo(() => RoomType, {
+    foreignKey: 'room_type_id',
+  })
   declare roomType: BelongsTo<typeof RoomType>
 
   @belongsTo(() => Room, {

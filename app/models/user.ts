@@ -103,7 +103,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   })
   declare permissions: ManyToMany<typeof Permission>
 
-  @belongsTo(() => Organization)
+  @belongsTo(() => Organization, {
+    foreignKey: 'organization_id',
+  })
   declare organization: BelongsTo<typeof Organization>
 
   /**
