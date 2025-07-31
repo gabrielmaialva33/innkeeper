@@ -139,7 +139,7 @@ erDiagram
         int hotel_id FK
         int room_id FK
         int guest_id FK
-        string confirmation_number
+        string confirmation_code
         string status
         date check_in_date
         date check_out_date
