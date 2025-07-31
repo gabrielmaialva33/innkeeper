@@ -44,7 +44,7 @@ shared infrastructure and centralized management capabilities.
 ```mermaid
 graph TB
     subgraph "🖥️ Frontend"
-        UI["🌐 React + Inertia.js<br/>Guest Portal • Staff Dashboard • Admin Panel"]
+        UI["🌐 React + Inertia.js<br/>Guest Portal | Staff Dashboard | Admin Panel"]
     end
 
     subgraph "🔧 Backend Services"
