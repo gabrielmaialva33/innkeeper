@@ -149,7 +149,9 @@ export default class Hotel extends BaseModel {
    * Relationships
    * ------------------------------------------------------
    */
-  @belongsTo(() => Organization)
+  @belongsTo(() => Organization, {
+    foreignKey: 'organization_id',
+  })
   declare organization: BelongsTo<typeof Organization>
 
   @hasMany(() => Room)
