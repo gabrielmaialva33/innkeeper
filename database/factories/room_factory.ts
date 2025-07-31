@@ -74,6 +74,10 @@ export const RoomFactory = factory
     room.status = 'available'
     room.housekeeping_status = 'inspected'
   })
+  .state('clean', (room) => {
+    room.status = 'available'
+    room.housekeeping_status = 'clean'
+  })
   .state('occupied', (room, { faker }) => {
     room.status = 'occupied'
     room.housekeeping_status = faker.helpers.arrayElement(['clean', 'dirty']) as 'clean' | 'dirty'

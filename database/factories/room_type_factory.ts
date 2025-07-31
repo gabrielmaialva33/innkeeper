@@ -40,7 +40,7 @@ export const RoomTypeFactory = factory
       organization_id: 0, // Will be set by relation
       hotel_id: 0, // Will be set by relation
       name,
-      slug: faker.helpers.slugify(name).toLowerCase(),
+      code: faker.helpers.slugify(name).toUpperCase().replace(/-/g, '_'),
       description: faker.lorem.paragraph(2),
       max_occupancy: faker.number.int(category.occupancy),
       base_price: faker.number.float({
@@ -48,7 +48,17 @@ export const RoomTypeFactory = factory
         max: category.basePrice.max,
         fractionDigits: 2,
       }),
-      currency: 'USD',
+      max_adults: faker.number.int({ min: 1, max: category.occupancy.max }),
+      max_children: faker.number.int({ min: 0, max: 2 }),
+      extra_bed_price: faker.datatype.boolean({ probability: 0.7 }) 
+        ? faker.number.float({ min: 20, max: 50, fractionDigits: 2 })
+        : null,
+      size_sqm: faker.number.int(category.size),
+      bed_type: faker.helpers.arrayElement(['king', 'queen', 'twin', 'double']),
+      bed_count: faker.number.int({ min: 1, max: 2 }),
+      view_type: faker.helpers.arrayElement(['city', 'ocean', 'garden', 'pool', 'mountain', null]),
+      is_active: true,
+      is_deleted: false,
       images: Array.from({ length: faker.number.int({ min: 3, max: 6 }) }, () =>
         faker.image.urlLoremFlickr({ category: 'hotel,room' })
       ),
