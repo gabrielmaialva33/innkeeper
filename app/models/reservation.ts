@@ -52,7 +52,7 @@ export default class Reservation extends BaseModel {
   declare group_reservation_id: number | null
 
   @column()
-  declare confirmation_number: string
+  declare confirmation_code: string
 
   @column()
   declare status: 'pending' | 'confirmed' | 'checked_in' | 'checked_out' | 'cancelled' | 'no_show'
