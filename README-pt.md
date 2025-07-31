@@ -32,8 +32,8 @@
 ## :bookmark: Sobre
 
 **Innkeeper** é um sistema completo de gerenciamento hoteleiro multi-tenant projetado para otimizar e modernizar as
-operações hoteleiras. Construído sobre uma base robusta de backend **AdonisJS v6** e frontend **React 19** com *
-*Inertia.js**, fornece uma solução completa para gerenciar múltiplas propriedades hoteleiras a partir de uma única
+operações hoteleiras. Construído sobre uma base robusta de backend **AdonisJS v6** e frontend **React 19** com \*
+\*Inertia.js\*\*, fornece uma solução completa para gerenciar múltiplas propriedades hoteleiras a partir de uma única
 plataforma.
 
 Este sistema atende às necessidades complexas dos negócios de hospitalidade modernos, desde pequenos hotéis boutique até
