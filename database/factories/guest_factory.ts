@@ -20,12 +20,13 @@ export const GuestFactory = factory
     // Generate names based on guest type
     const firstName = faker.person.firstName()
     const lastName = faker.person.lastName()
-    
+
     // Corporate guests more likely to be from major business countries
     const corporateCountries = ['US', 'GB', 'DE', 'JP', 'CN', 'FR', 'CA', 'AU']
-    const nationality = guestType === 'corporate' 
-      ? faker.helpers.arrayElement(corporateCountries)
-      : faker.location.countryCode('alpha-2')
+    const nationality =
+      guestType === 'corporate'
+        ? faker.helpers.arrayElement(corporateCountries)
+        : faker.location.countryCode('alpha-2')
 
     // Generate realistic document numbers based on type
     const documentTypes = {
@@ -35,14 +36,15 @@ export const GuestFactory = factory
     }
 
     // VIP and corporate guests more likely to have passports
-    const documentType = guestType === 'vip' || guestType === 'corporate'
-      ? faker.helpers.weightedArrayElement([
-          { value: 'passport' as const, weight: 80 },
-          { value: 'id_card' as const, weight: 15 },
-          { value: 'driver_license' as const, weight: 5 },
-        ])
-      : faker.helpers.objectKey(documentTypes) as keyof typeof documentTypes
-    
+    const documentType =
+      guestType === 'vip' || guestType === 'corporate'
+        ? faker.helpers.weightedArrayElement([
+            { value: 'passport' as const, weight: 80 },
+            { value: 'id_card' as const, weight: 15 },
+            { value: 'driver_license' as const, weight: 5 },
+          ])
+        : (faker.helpers.objectKey(documentTypes) as keyof typeof documentTypes)
+
     const documentNumber = documentTypes[documentType]()
 
     // Age distribution based on guest type
@@ -53,7 +55,7 @@ export const GuestFactory = factory
       regular: { min: 25, max: 60 },
       firstTime: { min: 18, max: 35 },
     }
-    
+
     const ageRange = ageRanges[guestType as keyof typeof ageRanges] || { min: 18, max: 80 }
     const birthDate = faker.date.birthdate({ min: ageRange.min, max: ageRange.max, mode: 'age' })
 
@@ -112,12 +114,16 @@ export const GuestFactory = factory
             regular: ['en', 'es', 'pt'],
             firstTime: ['en'],
           }
-          return faker.helpers.arrayElement(languages[guestType as keyof typeof languages] || ['en'])
+          return faker.helpers.arrayElement(
+            languages[guestType as keyof typeof languages] || ['en']
+          )
         })(),
       },
-      loyalty_number: guestType === 'vip' || (guestType === 'regular' && faker.datatype.boolean({ probability: 0.6 }))
-        ? faker.string.alphanumeric({ length: 10, casing: 'upper' })
-        : null,
+      loyalty_number:
+        guestType === 'vip' ||
+        (guestType === 'regular' && faker.datatype.boolean({ probability: 0.6 }))
+          ? faker.string.alphanumeric({ length: 10, casing: 'upper' })
+          : null,
       loyalty_points: (() => {
         const pointRanges = {
           vip: { min: 10000, max: 100000 },
@@ -135,7 +141,7 @@ export const GuestFactory = factory
       metadata: {
         // Guest type for future reference
         guest_type: guestType,
-        
+
         // Stay history based on guest type
         total_stays: (() => {
           const stayRanges = {
@@ -148,7 +154,7 @@ export const GuestFactory = factory
           const range = stayRanges[guestType as keyof typeof stayRanges] || { min: 0, max: 5 }
           return faker.number.int(range)
         })(),
-        
+
         // Total spent correlated with stays and guest type
         total_spent: (() => {
           const spendRanges = {
@@ -161,17 +167,18 @@ export const GuestFactory = factory
           const range = spendRanges[guestType as keyof typeof spendRanges] || { min: 0, max: 1000 }
           return faker.number.float({ ...range, fractionDigits: 2 })
         })(),
-        
+
         // Average stay length based on guest profile
         average_stay_length: guestProfile.behavior.avgStayLength,
-        
+
         // Last stay date - more recent for regular guests
-        last_stay_date: guestType === 'firstTime' 
-          ? null 
-          : guestType === 'regular' || guestType === 'vip'
-          ? faker.date.recent({ days: 90 })
-          : faker.date.recent({ days: 180 }),
-        
+        last_stay_date:
+          guestType === 'firstTime'
+            ? null
+            : guestType === 'regular' || guestType === 'vip'
+              ? faker.date.recent({ days: 90 })
+              : faker.date.recent({ days: 180 }),
+
         // Acquisition source based on guest type
         source: (() => {
           const sources = {
@@ -181,14 +188,17 @@ export const GuestFactory = factory
             regular: ['direct', 'website', 'phone'],
             firstTime: ['booking.com', 'expedia', 'google', 'social_media'],
           }
-          return faker.helpers.arrayElement(sources[guestType as keyof typeof sources] || ['website'])
+          return faker.helpers.arrayElement(
+            sources[guestType as keyof typeof sources] || ['website']
+          )
         })(),
-        
+
         // Marketing consent higher for loyal guests
-        marketing_consent: guestType === 'vip' || guestType === 'regular' 
-          ? faker.datatype.boolean({ probability: 0.8 })
-          : faker.datatype.boolean({ probability: 0.4 }),
-        
+        marketing_consent:
+          guestType === 'vip' || guestType === 'regular'
+            ? faker.datatype.boolean({ probability: 0.8 })
+            : faker.datatype.boolean({ probability: 0.4 }),
+
         // Additional metadata based on guest type
         tags: (() => {
           const tags = []
@@ -199,13 +209,13 @@ export const GuestFactory = factory
           if (guestType === 'firstTime') tags.push('new', 'first_time')
           return tags
         })(),
-        
+
         // Service usage probability
         service_usage_score: guestProfile.behavior.serviceUsage,
-        
+
         // Complaint history
         complaint_rate: guestProfile.behavior.complaintRate,
-        
+
         // Tipping behavior
         average_tip_percentage: guestProfile.behavior.tipAmount * 100,
       },
@@ -220,7 +230,10 @@ export const GuestFactory = factory
     guest.metadata.tags = ['vip', 'frequent_guest', 'high_value', 'priority']
     guest.preferences.room_preference = faker.helpers.arrayElement(['presidential', 'penthouse'])
     guest.preferences.floor_preference = 'high'
-    guest.metadata.preferred_staff = faker.helpers.arrayElements(['John', 'Mary', 'David'], { min: 1, max: 2 })
+    guest.metadata.preferred_staff = faker.helpers.arrayElements(['John', 'Mary', 'David'], {
+      min: 1,
+      max: 2,
+    })
   })
   .state('regular', (guest, { faker }) => {
     guest.metadata.guest_type = 'regular'
@@ -241,7 +254,8 @@ export const GuestFactory = factory
     guest.metadata.tags = ['corporate', 'business', 'frequent_traveler']
     guest.metadata.company = company
     guest.metadata.corporate_id = faker.string.alphanumeric({ length: 8, casing: 'upper' })
-    guest.metadata.corporate_rate_code = 'CORP-' + faker.string.alphanumeric({ length: 4, casing: 'upper' })
+    guest.metadata.corporate_rate_code =
+      'CORP-' + faker.string.alphanumeric({ length: 4, casing: 'upper' })
     guest.preferences.special_requests = 'Invoice to company'
     guest.preferences.floor_preference = 'high'
     guest.metadata.expense_approval_required = faker.datatype.boolean({ probability: 0.3 })
