@@ -175,7 +175,9 @@ export default class Guest extends BaseModel {
   })
   declare user: BelongsTo<typeof User>
 
-  @hasMany(() => Reservation)
+  @hasMany(() => Reservation, {
+    foreignKey: 'guest_id',
+  })
   declare reservations: HasMany<typeof Reservation>
 
   /**

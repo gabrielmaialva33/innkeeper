@@ -99,10 +99,14 @@ export default class Organization extends BaseModel {
    * Relationships
    * ------------------------------------------------------
    */
-  @hasMany(() => Hotel)
+  @hasMany(() => Hotel, {
+    foreignKey: 'organization_id',
+  })
   declare hotels: HasMany<typeof Hotel>
 
-  @hasMany(() => User)
+  @hasMany(() => User, {
+    foreignKey: 'organization_id',
+  })
   declare users: HasMany<typeof User>
 
   /**

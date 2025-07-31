@@ -110,7 +110,9 @@ export default class RoomType extends BaseModel {
   })
   declare hotel: BelongsTo<typeof Hotel>
 
-  @hasMany(() => Room)
+  @hasMany(() => Room, {
+    foreignKey: 'room_type_id',
+  })
   declare rooms: HasMany<typeof Room>
 
   @manyToMany(() => Amenity, {

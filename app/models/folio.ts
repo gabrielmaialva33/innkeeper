@@ -115,7 +115,9 @@ export default class Folio extends BaseModel {
   })
   declare closedBy: BelongsTo<typeof User>
 
-  @hasMany(() => Payment)
+  @hasMany(() => Payment, {
+    foreignKey: 'folio_id',
+  })
   declare payments: HasMany<typeof Payment>
 
   /**

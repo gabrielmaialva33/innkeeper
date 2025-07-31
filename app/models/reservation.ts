@@ -211,10 +211,14 @@ export default class Reservation extends BaseModel {
   })
   declare cancelledBy: BelongsTo<typeof User>
 
-  @hasMany(() => Payment)
+  @hasMany(() => Payment, {
+    foreignKey: 'reservation_id',
+  })
   declare payments: HasMany<typeof Payment>
 
-  @hasOne(() => Folio)
+  @hasOne(() => Folio, {
+    foreignKey: 'reservation_id',
+  })
   declare folio: HasOne<typeof Folio>
 
   @manyToMany(() => Service, {
