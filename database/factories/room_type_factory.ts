@@ -40,7 +40,10 @@ export const RoomTypeFactory = factory
       organization_id: 0, // Will be set by relation
       hotel_id: 0, // Will be set by relation
       name,
-      code: faker.helpers.slugify(name).toUpperCase().replace(/-/g, '_') + '_' + faker.string.alphanumeric({ length: 4, casing: 'upper' }),
+      code:
+        faker.helpers.slugify(name).toUpperCase().replace(/-/g, '_') +
+        '_' +
+        faker.string.alphanumeric({ length: 4, casing: 'upper' }),
       description: faker.lorem.paragraph(2),
       max_occupancy: faker.number.int(category.occupancy),
       base_price: faker.number.float({
@@ -50,7 +53,7 @@ export const RoomTypeFactory = factory
       }),
       max_adults: faker.number.int({ min: 1, max: category.occupancy.max }),
       max_children: faker.number.int({ min: 0, max: 2 }),
-      extra_bed_price: faker.datatype.boolean({ probability: 0.7 }) 
+      extra_bed_price: faker.datatype.boolean({ probability: 0.7 })
         ? faker.number.float({ min: 20, max: 50, fractionDigits: 2 })
         : null,
       size_sqm: faker.number.int(category.size),

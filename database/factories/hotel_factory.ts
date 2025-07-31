@@ -33,7 +33,14 @@ export const HotelFactory = factory
       postal_code: faker.location.zipCode(),
       latitude: faker.location.latitude(),
       longitude: faker.location.longitude(),
-      timezone: faker.helpers.arrayElement(['America/New_York', 'America/Chicago', 'America/Denver', 'America/Los_Angeles', 'Europe/London', 'Europe/Paris']),
+      timezone: faker.helpers.arrayElement([
+        'America/New_York',
+        'America/Chicago',
+        'America/Denver',
+        'America/Los_Angeles',
+        'Europe/London',
+        'Europe/Paris',
+      ]),
       currency: faker.helpers.arrayElement(['USD', 'EUR', 'GBP', 'CAD']),
       check_in_time: faker.helpers.arrayElement(['14:00', '15:00', '16:00']),
       check_out_time: faker.helpers.arrayElement(['10:00', '11:00', '12:00']),
@@ -143,14 +150,28 @@ export const HotelFactory = factory
     hotel.total_rooms = faker.number.int({ min: 150, max: 400 })
     hotel.star_rating = faker.number.int({ min: 4, max: 5 })
     hotel.metadata.hotel_type = 'resort'
-    hotel.metadata.amenities = ['wifi', 'pool', 'beach_access', 'spa', 'multiple_restaurants', 'kids_club']
+    hotel.metadata.amenities = [
+      'wifi',
+      'pool',
+      'beach_access',
+      'spa',
+      'multiple_restaurants',
+      'kids_club',
+    ]
   })
   .state('businessHotel', (hotel, { faker }) => {
     hotel.name = `${faker.location.city()} Business Hotel`
     hotel.total_rooms = faker.number.int({ min: 200, max: 500 })
     hotel.star_rating = 4
     hotel.metadata.hotel_type = 'business'
-    hotel.metadata.amenities = ['wifi', 'parking', 'gym', 'business_center', 'conference_rooms', 'airport_shuttle']
+    hotel.metadata.amenities = [
+      'wifi',
+      'parking',
+      'gym',
+      'business_center',
+      'conference_rooms',
+      'airport_shuttle',
+    ]
   })
   .state('boutiqueHotel', (hotel, { faker }) => {
     hotel.name = `The ${faker.company.catchPhraseAdjective()} Boutique`
@@ -164,7 +185,14 @@ export const HotelFactory = factory
     hotel.total_rooms = faker.number.int({ min: 200, max: 600 })
     hotel.star_rating = 5
     hotel.metadata.hotel_type = 'luxury'
-    hotel.metadata.amenities = ['wifi', 'valet_parking', 'spa', 'fine_dining', 'concierge', 'butler_service']
+    hotel.metadata.amenities = [
+      'wifi',
+      'valet_parking',
+      'spa',
+      'fine_dining',
+      'concierge',
+      'butler_service',
+    ]
     hotel.policies.overbooking_percentage = 0
   })
   .after('create', async () => {
