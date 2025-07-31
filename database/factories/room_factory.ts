@@ -69,7 +69,7 @@ export const RoomFactory = factory
       },
     }
   })
-  .relation('roomType', () => RoomTypeFactory)
+  .relation('room_type', () => RoomTypeFactory)
   .state('available', (room) => {
     room.status = 'available'
     room.housekeeping_status = 'inspected'

@@ -174,7 +174,7 @@ export const FolioFactory = factory
   })
   .relation('reservation', () => ReservationFactory)
   .relation('guest', () => GuestFactory)
-  .relation('closedBy', () => UserFactory)
+  .relation('closed_by', () => UserFactory)
   .state('open', (folio) => {
     folio.status = 'open'
     folio.paid_amount = 0
