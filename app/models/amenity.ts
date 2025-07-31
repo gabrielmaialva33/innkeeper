@@ -72,7 +72,7 @@ export default class Amenity extends BaseModel {
   @manyToMany(() => RoomType, {
     pivotTable: 'room_type_amenities',
   })
-  declare roomTypes: ManyToMany<typeof RoomType>
+  declare room_types: ManyToMany<typeof RoomType>
 
   /**
    * ------------------------------------------------------

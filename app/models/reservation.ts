@@ -204,12 +204,12 @@ export default class Reservation extends BaseModel {
   @belongsTo(() => User, {
     foreignKey: 'created_by_user_id',
   })
-  declare createdBy: BelongsTo<typeof User>
+  declare created_by: BelongsTo<typeof User>
 
   @belongsTo(() => User, {
     foreignKey: 'cancelled_by_user_id',
   })
-  declare cancelledBy: BelongsTo<typeof User>
+  declare cancelled_by: BelongsTo<typeof User>
 
   @hasMany(() => Payment, {
     foreignKey: 'reservation_id',

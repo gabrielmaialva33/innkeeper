@@ -146,7 +146,7 @@ export default class Payment extends BaseModel {
   @belongsTo(() => User, {
     foreignKey: 'processed_by_user_id',
   })
-  declare processedBy: BelongsTo<typeof User>
+  declare processed_by: BelongsTo<typeof User>
 
   /**
    * ------------------------------------------------------

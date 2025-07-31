@@ -107,12 +107,12 @@ export default class Room extends BaseModel {
   @belongsTo(() => RoomType, {
     foreignKey: 'room_type_id',
   })
-  declare roomType: BelongsTo<typeof RoomType>
+  declare room_type: BelongsTo<typeof RoomType>
 
   @belongsTo(() => Room, {
     foreignKey: 'connecting_room_id',
   })
-  declare connectingRoom: BelongsTo<typeof Room>
+  declare connecting_room: BelongsTo<typeof Room>
 
   @hasMany(() => Reservation)
   declare reservations: HasMany<typeof Reservation>

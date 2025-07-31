@@ -162,7 +162,7 @@ export default class Hotel extends BaseModel {
   @hasMany(() => RoomType, {
     foreignKey: 'hotel_id',
   })
-  declare roomTypes: HasMany<typeof RoomType>
+  declare room_types: HasMany<typeof RoomType>
 
   @manyToMany(() => Staff, {
     pivotTable: 'staff_hotels',
