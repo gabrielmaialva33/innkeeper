@@ -40,7 +40,7 @@ export const RoomTypeFactory = factory
       organization_id: 0, // Will be set by relation
       hotel_id: 0, // Will be set by relation
       name,
-      code: faker.helpers.slugify(name).toUpperCase().replace(/-/g, '_'),
+      code: faker.helpers.slugify(name).toUpperCase().replace(/-/g, '_') + '_' + faker.string.alphanumeric({ length: 4, casing: 'upper' }),
       description: faker.lorem.paragraph(2),
       max_occupancy: faker.number.int(category.occupancy),
       base_price: faker.number.float({
@@ -118,8 +118,15 @@ export const RoomTypeFactory = factory
     }
   })
   .relation('hotel', () => HotelFactory)
+  .state('economy', (roomType, { faker }) => {
+    roomType.name = 'Economy Room'
+    roomType.max_occupancy = faker.number.int({ min: 1, max: 2 })
+    roomType.base_price = faker.number.float({ min: 50, max: 80, fractionDigits: 2 })
+    roomType.size_sqm = faker.number.int({ min: 15, max: 20 })
+    roomType.metadata.size_in_sqm = faker.number.int({ min: 15, max: 20 })
+  })
   .state('standard', (roomType, { faker }) => {
-    roomType.name = faker.helpers.arrayElement(['Standard Room', 'Classic Room', 'Economy Room'])
+    roomType.name = faker.helpers.arrayElement(['Standard Room', 'Classic Room'])
     roomType.max_occupancy = faker.number.int({ min: 1, max: 2 })
     roomType.base_price = faker.number.float({ min: 80, max: 150, fractionDigits: 2 })
     roomType.metadata.size_in_sqm = faker.number.int({ min: 20, max: 30 })
