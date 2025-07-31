@@ -27,7 +27,7 @@ export default class extends BaseSchema {
 
       table.integer('group_reservation_id').unsigned().nullable()
 
-      table.string('confirmation_number').notNullable().unique()
+      table.string('confirmation_code').notNullable().unique()
 
       table
         .enum('status', [
@@ -107,7 +107,7 @@ export default class extends BaseSchema {
       table.index('hotel_id')
       table.index('room_id')
       table.index('guest_id')
-      table.index('confirmation_number')
+      table.index('confirmation_code')
       table.index('status')
       table.index('check_in_date')
       table.index('check_out_date')

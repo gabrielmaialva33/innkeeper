@@ -211,7 +211,7 @@ export default class extends BaseSeeder {
       guest_id: vipGuest.id,
       created_by_user_id: staffUser.id,
       status: 'confirmed',
-      confirmation_number: 'TEST-001',
+      confirmation_code: 'TEST-001',
     }).create()
 
     logger.info(`  ✓ Created test hotel with rooms and sample reservation`)

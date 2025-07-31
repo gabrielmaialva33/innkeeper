@@ -53,7 +53,7 @@ export const ReservationFactory = factory
       guest_id: 0, // Will be set by relation
       created_by_user_id: 0, // Will be set by relation
       group_reservation_id: null,
-      confirmation_number: confirmationCode,
+      confirmation_code: confirmationCode,
       check_in_date: DateTime.fromJSDate(checkInDate),
       check_out_date: DateTime.fromJSDate(checkOutDate),
       adults,
