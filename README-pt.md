@@ -45,33 +45,33 @@ dados enquanto se beneficia de infraestrutura compartilhada e recursos de gerenc
 ```mermaid
 graph TB
     subgraph "🖥️ Frontend"
-        UI[React + Inertia.js<br/>Portal do Hóspede | Painel da Equipe | Painel Admin]
+        UI["🌐 React + Inertia.js<br/>Portal do Hóspede • Painel da Equipe • Painel Admin"]
     end
-    
+
     subgraph "🔧 Serviços Backend"
         API[AdonisJS API]
         AUTH[Auth Multi-Tenant]
         BOOKING[Motor de Reservas]
         PMS[Gestão de Propriedades]
     end
-    
+
     subgraph "💾 Camada de Dados"
         DB[(PostgreSQL)]
         CACHE[(Redis)]
     end
-    
+
     UI --> API
     API --> AUTH
     API --> BOOKING
     API --> PMS
-    
+
     AUTH --> DB
     BOOKING --> DB
     PMS --> DB
-    
+
     BOOKING --> CACHE
     AUTH --> CACHE
-    
+
     style UI fill:#e1f5fe
     style API fill:#f3e5f5
     style DB fill:#e8f5e8
@@ -94,7 +94,7 @@ erDiagram
         string timezone
         string currency
     }
-    
+
     HOTELS {
         int id PK
         int organization_id FK
@@ -105,7 +105,7 @@ erDiagram
         time check_in_time
         time check_out_time
     }
-    
+
     ROOMS {
         int id PK
         int hotel_id FK
@@ -114,7 +114,7 @@ erDiagram
         string status
         string housekeeping_status
     }
-    
+
     ROOM_TYPES {
         int id PK
         int hotel_id FK
@@ -123,7 +123,7 @@ erDiagram
         decimal base_price
         string bed_type
     }
-    
+
     GUESTS {
         int id PK
         int organization_id FK
@@ -133,7 +133,7 @@ erDiagram
         string phone
         string document_number
     }
-    
+
     RESERVATIONS {
         int id PK
         int organization_id FK
@@ -146,7 +146,7 @@ erDiagram
         date check_out_date
         decimal total_amount
     }
-    
+
     PAYMENTS {
         int id PK
         int reservation_id FK
@@ -157,7 +157,7 @@ erDiagram
         decimal amount
         string currency
     }
-    
+
     ORGANIZATIONS ||--o{ HOTELS : "possui"
     ORGANIZATIONS ||--o{ GUESTS : "gerencia"
     HOTELS ||--o{ ROOMS : "contém"

@@ -44,33 +44,33 @@ shared infrastructure and centralized management capabilities.
 ```mermaid
 graph TB
     subgraph "🖥️ Frontend"
-        UI[React + Inertia.js<br/>Guest Portal | Staff Dashboard | Admin Panel]
+        UI["🌐 React + Inertia.js<br/>Guest Portal • Staff Dashboard • Admin Panel"]
     end
-    
+
     subgraph "🔧 Backend Services"
         API[AdonisJS API]
         AUTH[Multi-Tenant Auth]
         BOOKING[Booking Engine]
         PMS[Property Management]
     end
-    
+
     subgraph "💾 Data Layer"
         DB[(PostgreSQL)]
         CACHE[(Redis)]
     end
-    
+
     UI --> API
     API --> AUTH
     API --> BOOKING
     API --> PMS
-    
+
     AUTH --> DB
     BOOKING --> DB
     PMS --> DB
-    
+
     BOOKING --> CACHE
     AUTH --> CACHE
-    
+
     style UI fill:#e1f5fe
     style API fill:#f3e5f5
     style DB fill:#e8f5e8
@@ -93,7 +93,7 @@ erDiagram
         string timezone
         string currency
     }
-    
+
     HOTELS {
         int id PK
         int organization_id FK
@@ -104,7 +104,7 @@ erDiagram
         time check_in_time
         time check_out_time
     }
-    
+
     ROOMS {
         int id PK
         int hotel_id FK
@@ -113,7 +113,7 @@ erDiagram
         string status
         string housekeeping_status
     }
-    
+
     ROOM_TYPES {
         int id PK
         int hotel_id FK
@@ -122,7 +122,7 @@ erDiagram
         decimal base_price
         string bed_type
     }
-    
+
     GUESTS {
         int id PK
         int organization_id FK
@@ -132,7 +132,7 @@ erDiagram
         string phone
         string document_number
     }
-    
+
     RESERVATIONS {
         int id PK
         int organization_id FK
@@ -145,7 +145,7 @@ erDiagram
         date check_out_date
         decimal total_amount
     }
-    
+
     PAYMENTS {
         int id PK
         int reservation_id FK
@@ -156,7 +156,7 @@ erDiagram
         decimal amount
         string currency
     }
-    
+
     ORGANIZATIONS ||--o{ HOTELS : "owns"
     ORGANIZATIONS ||--o{ GUESTS : "manages"
     HOTELS ||--o{ ROOMS : "contains"
