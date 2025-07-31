@@ -9,7 +9,7 @@ import { UserFactory } from './user_factory.js'
 
 export const ReservationFactory = factory
   .define(Reservation, async ({ faker }: FactoryContextContract) => {
-    // Generate check-in date between 30 days ago and 60 days in the future
+    // Generated a check-in date between 30 days ago and 60 days in the future
     const checkInDate = faker.date.between({
       from: DateTime.now().minus({ days: 30 }).toJSDate(),
       to: DateTime.now().plus({ days: 60 }).toJSDate(),
@@ -98,14 +98,15 @@ export const ReservationFactory = factory
       discount_amount: 0,
       tax_amount: taxAmount,
       currency: 'USD',
-      source: faker.helpers.arrayElement([
+      channel: faker.helpers.arrayElement([
         'direct',
-        'booking.com',
-        'expedia',
+        'website',
         'phone',
-        'walk_in',
+        'walkin',
+        'ota',
         'corporate',
-      ]),
+      ]) as 'direct' | 'website' | 'phone' | 'walkin' | 'ota' | 'corporate',
+      channel_reference: null,
       payment_status: 'pending' as const,
       payment_method: faker.helpers.arrayElement([
         'cash',
@@ -118,9 +119,12 @@ export const ReservationFactory = factory
       requires_pickup: faker.datatype.boolean({ probability: 0.2 }),
       pickup_location: null,
       pickup_time: null,
+      actual_check_in: null,
+      actual_check_out: null,
       cancelled_at: null,
       cancellation_reason: null,
       cancelled_by_user_id: null,
+      is_deleted: false,
       guest_details: {
         additional_guests: [],
       },
