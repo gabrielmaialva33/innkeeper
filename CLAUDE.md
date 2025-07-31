@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in the Innkeeper hotel management system repository.
 
 ## ⚠️ CRITICAL RULE: ALWAYS USE ADONISJS COMMANDS
 
@@ -46,8 +46,7 @@ This ensures proper file structure, naming conventions, and boilerplate code.
 
 ## Architecture Overview
 
-This is an AdonisJS v6 application with React frontend using Inertia.js. The project follows a modular structure with
-clear separation of concerns.
+Innkeeper is a multi-tenant hotel management system built with AdonisJS v6 backend and React frontend using Inertia.js. The project follows a modular structure with clear separation of concerns, designed specifically for hospitality industry needs.
 
 ### Key Technologies
 
@@ -97,6 +96,15 @@ The application uses a comprehensive RBAC (Role-Based Access Control) system:
 
 ### Key Features
 
+- **Multi-Tenant Architecture**: Each hotel property operates in isolation
+- **Hotel Management**: Complete property and room management system
+- **Reservation System**: Advanced booking engine with availability tracking
+- **Guest Management**: Guest profiles, preferences, and history
+- **Staff Management**: Employee roles, schedules, and permissions
+- **Billing System**: Invoicing, payments, and financial reporting
+- **Housekeeping**: Room status and cleaning schedule management
+- **Channel Management**: Integration with booking platforms
+- **Analytics**: Occupancy rates, revenue reports, and performance metrics
 - **User Management**: CRUD operations with email verification
 - **Role Management**: Dynamic role creation and permission assignment
 - **File Upload**: Multi-provider file storage (local, S3, GCS)
@@ -138,13 +146,26 @@ Uses Japa testing framework with API client and OpenAPI assertion support.
 
 Services are organized by domain with specific use cases:
 
+**Core Hotel Domains:**
+- `app/services/hotels/` - Hotel property management
+- `app/services/rooms/` - Room inventory and management
+- `app/services/reservations/` - Booking and reservation handling
+- `app/services/guests/` - Guest profile management
+- `app/services/billing/` - Invoicing and payment processing
+- `app/services/housekeeping/` - Room status and cleaning
+- `app/services/staff/` - Employee management
+- `app/services/reports/` - Analytics and reporting
+- `app/services/channels/` - OTA integrations
+
+**System Services:**
 - `app/services/users/` - User-related operations
 - `app/services/permissions/` - Permission management
 - `app/services/roles/` - Role management
 - `app/services/audits/` - Audit logging
 - `app/services/upload/` - File upload handling
+- `app/services/tenants/` - Multi-tenant management
 
-This structure promotes maintainability and clear separation of business logic.
+This structure promotes maintainability and clear separation of business logic for hotel operations.
 
 ## AdonisJS Commands Reference (MUST USE)
 
@@ -368,6 +389,28 @@ await loadHelpers() // Access helpers module
 - Use `.ls` to list all available methods
 - Press Tab for auto-completion
 - Use `.exit` or Ctrl+C twice to quit
+
+## Hotel Management Domain Guidelines
+
+### Multi-Tenant Considerations
+1. **Tenant Isolation**: Always ensure data queries include tenant context
+2. **Tenant Resolution**: Use middleware to resolve tenant from subdomain or header
+3. **Shared Resources**: Distinguish between tenant-specific and shared data
+4. **Migration Strategy**: Consider tenant-aware migrations
+
+### Hotel-Specific Patterns
+1. **Availability Checking**: Use Redis for real-time room availability
+2. **Rate Management**: Implement dynamic pricing with seasonal rates
+3. **Reservation States**: Handle pending, confirmed, checked-in, checked-out states
+4. **Overbooking**: Implement overbooking strategies with proper handling
+5. **Channel Sync**: Queue-based synchronization with external booking platforms
+
+### Common Hotel Operations
+1. **Night Audit**: Daily closing and report generation
+2. **Group Bookings**: Handle multiple rooms for single reservation
+3. **Walk-ins**: Direct bookings without prior reservation
+4. **Room Blocking**: Reserve rooms for maintenance or VIP
+5. **Folio Management**: Track all guest charges and payments
 
 ## Important Instructions for AI Assistants
 
