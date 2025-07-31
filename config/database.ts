@@ -17,7 +17,7 @@ const dbConfig = defineConfig({
         paths: ['database/migrations'],
       },
       seeders: {
-        paths: ['database/seeders'],
+        paths: ['database/seeders/main'],
       },
     },
     postgres: {
@@ -34,7 +34,7 @@ const dbConfig = defineConfig({
         paths: ['database/migrations'],
       },
       seeders: {
-        paths: ['database/seeders'],
+        paths: ['database/seeders/main'],
       },
     },
   },
