@@ -38,7 +38,7 @@ export default class extends BaseSchema {
       table.decimal('tax_rate', 5, 2).notNullable().defaultTo(0)
       table.boolean('is_taxable').defaultTo(true)
 
-      table.boolean('is_available_24h').defaultTo(false)
+      table.boolean('is_available_24_h').defaultTo(false)
       table.time('available_from').nullable()
       table.time('available_until').nullable()
 
