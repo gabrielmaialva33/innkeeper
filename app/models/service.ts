@@ -61,7 +61,7 @@ export default class Service extends BaseModel {
   declare is_taxable: boolean
 
   @column()
-  declare is_available_24h: boolean
+  declare is_available_24_h: boolean
 
   @column()
   declare available_from: string | null
