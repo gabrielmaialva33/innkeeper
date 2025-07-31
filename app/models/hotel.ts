@@ -166,11 +166,14 @@ export default class Hotel extends BaseModel {
 
   @manyToMany(() => Staff, {
     pivotTable: 'staff_hotels',
+    pivotTimestamps: true,
+    pivotColumns: ['is_primary', 'started_at', 'ended_at'],
   })
   declare staff: ManyToMany<typeof Staff>
 
   @manyToMany(() => Amenity, {
     pivotTable: 'hotel_amenities',
+    pivotTimestamps: true,
   })
   declare amenities: ManyToMany<typeof Amenity>
 
