@@ -13,6 +13,9 @@ export default class extends BaseSchema {
       table.string('username', 80).nullable().unique()
       table.string('password').notNullable()
 
+      table.integer('organization_id').unsigned().nullable()
+      table.foreign('organization_id').references('id').inTable('organizations').onDelete('CASCADE')
+
       table.boolean('is_deleted').defaultTo(false)
 
       table.jsonb('metadata').defaultTo(
@@ -26,6 +29,8 @@ export default class extends BaseSchema {
 
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
+
+      table.index('organization_id')
     })
   }
 
