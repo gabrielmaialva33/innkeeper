@@ -4,11 +4,16 @@ import {
   ChevronDown,
   ChevronRight,
   Home,
+  Hotel,
   type LucideIcon,
   Settings,
   Shield,
   Upload,
   Users,
+  Bed,
+  Calendar,
+  UserCheck,
+  BarChart3,
 } from 'lucide-react'
 
 import { cn } from '~/utils/cn'
@@ -26,6 +31,17 @@ const menuItems: MenuItem[] = [
     title: 'Dashboard',
     href: '/dashboard',
     icon: Home,
+  },
+  {
+    title: 'Hotel Management',
+    icon: Hotel,
+    children: [
+      { title: 'Rooms', href: '/hotel/rooms' },
+      { title: 'Reservations', href: '/hotel/reservations' },
+      { title: 'Guests', href: '/hotel/guests' },
+      { title: 'Housekeeping', href: '/hotel/housekeeping' },
+      { title: 'Reports', href: '/hotel/reports' },
+    ],
   },
   {
     title: 'Users',
