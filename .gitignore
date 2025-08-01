@@ -24,8 +24,5 @@ yarn-error.log
 # Platform specific
 .DS_Store
 
-# Claude Code
-.claude
-
 # AdonisJS specific
 storage/uploads/*
