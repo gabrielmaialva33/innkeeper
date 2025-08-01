@@ -53,7 +53,9 @@ router
     router.get('/dashboard', [InertiaDashboardController, 'index']).as('dashboard')
 
     // Hotel Management
-    router.get('/hotel/dashboard', [InertiaDashboardController, 'hotelDashboard']).as('hotel.dashboard')
+    router
+      .get('/hotel/dashboard', [InertiaDashboardController, 'hotelDashboard'])
+      .as('hotel.dashboard')
     router.get('/hotel/rooms', [HotelRoomsController, 'index']).as('hotel.rooms')
 
     // UI Demo Page
