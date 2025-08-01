@@ -1,14 +1,20 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Table } from '@tanstack/react-table';
+} from '~/components/ui/dropdown-menu'
+import { Table } from '@tanstack/react-table'
 
-function DataGridColumnVisibility<TData>({ table, trigger }: { table: Table<TData>; trigger: ReactNode }) {
+function DataGridColumnVisibility<TData>({
+  table,
+  trigger,
+}: {
+  table: Table<TData>
+  trigger: ReactNode
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
@@ -28,11 +34,11 @@ function DataGridColumnVisibility<TData>({ table, trigger }: { table: Table<TDat
               >
                 {column.columnDef.meta?.headerTitle || column.id}
               </DropdownMenuCheckboxItem>
-            );
+            )
           })}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }
 
-export { DataGridColumnVisibility };
+export { DataGridColumnVisibility }

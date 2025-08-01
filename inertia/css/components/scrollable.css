@@ -69,8 +69,7 @@
   .kt-scrollable-hover:hover,
   .kt-scrollable-y-hover:hover,
   .kt-scrollable-x-hover:hover {
-    scrollbar-color: var(--scrollbar-thumb-color, var(--color-input))
-      transparent;
+    scrollbar-color: var(--scrollbar-thumb-color, var(--color-input)) transparent;
 
     &::-webkit-scrollbar-thumb {
       background-color: var(--scrollbar-thumb-color, var(--color-input));
@@ -80,7 +79,7 @@
       background-color: transparent;
     }
   }
-  
+
   /* Target safari browser only */
   @supports (-webkit-hyphens: none) {
     .kt-scrollable,
@@ -98,7 +97,6 @@
       overflow-x: auto;
     }
   }
-
 
   /* Responsive adjustments for smaller screens */
   @media (max-width: var(--screen-lg)) {
@@ -118,4 +116,3 @@
     }
   }
 }
-
