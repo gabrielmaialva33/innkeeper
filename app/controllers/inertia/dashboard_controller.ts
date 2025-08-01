@@ -69,6 +69,35 @@ export default class InertiaDashboardController {
       },
     }
 
-    return inertia.render('hotel/dashboard', dashboardData)
+    // Prepare data for the new Metronic dashboard
+    const metronicDashboardData = {
+      user: auth.user!,
+      stats: {
+        todayCheckins: dashboardData.hotelStats.todayCheckIns,
+        todayCheckouts: dashboardData.hotelStats.todayCheckOuts,
+        occupancyRate: dashboardData.hotelStats.occupancyRate,
+        totalRevenue: dashboardData.hotelStats.totalRevenue,
+        adr: dashboardData.hotelStats.averageRate,
+        revpar:
+          (dashboardData.hotelStats.averageRate * dashboardData.hotelStats.occupancyRate) / 100,
+      },
+      recentBookings: dashboardData.recentBookings,
+      roomStatus: {
+        occupied: dashboardData.hotelStats.occupiedRooms,
+        vacant: dashboardData.hotelStats.availableRooms - dashboardData.housekeepingStatus.dirty,
+        maintenance:
+          dashboardData.housekeepingStatus.maintenance +
+          dashboardData.housekeepingStatus.outOfOrder,
+        blocked: 0,
+        dirty: dashboardData.housekeepingStatus.dirty,
+      },
+      occupancyTrend: dashboardData.occupancyTrend.map((t) => ({
+        date: t.date,
+        revenue: dashboardData.hotelStats.totalRevenue * (t.occupancy / 100),
+        occupancy: t.occupancy,
+      })),
+    }
+
+    return inertia.render('hotel/dashboard-metronic', metronicDashboardData)
   }
 }
