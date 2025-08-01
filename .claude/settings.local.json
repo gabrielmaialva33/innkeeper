@@ -23,7 +23,8 @@
       "Bash(tsc --noEmit)",
       "Bash(curl:*)",
       "Bash(find:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "mcp__playwright__browser_navigate"
     ],
     "deny": []
   }
