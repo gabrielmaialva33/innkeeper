@@ -1,5 +1,13 @@
 @import './tailwind.config.css';
 
+/* Metronic CSS Config */
+@import './config.reui.css';
+
+/* Metronic Components */
+@import './components/apexcharts.css';
+@import './components/image-input.css';
+@import './components/scrollable.css';
+
 @layer base {
   :root {
     /* Metronic-inspired color system using oklch */
