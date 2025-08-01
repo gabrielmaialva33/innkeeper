@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "mcp__exa__web_search_exa",
+      "mcp__sequential-thinking__sequentialthinking",
+      "Bash(node ace make:model:*)",
+      "Bash(cp:*)",
+      "Bash(node ace make:migration:*)",
+      "Bash(node ace generate:*)",
+      "mcp__ref__ref_search_documentation",
+      "mcp__ref__ref_read_url",
+      "Bash(node ace make:factory:*)",
+      "Bash(mkdir:*)",
+      "Bash(node ace make:seeder:*)",
+      "Bash(mv:*)",
+      "Bash(sed:*)",
+      "Bash(pnpm run lint:*)",
+      "mcp__exa__deep_researcher_start",
+      "mcp__exa__deep_researcher_check",
+      "Bash(pnpm run:*)",
+      "Bash(node ace make:controller:*)",
+      "Bash(tsc --noEmit)",
+      "Bash(curl:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)"
+    ],
+    "deny": []
+  }
+}
