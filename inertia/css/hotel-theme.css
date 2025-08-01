@@ -161,7 +161,7 @@
 
   /* Dashboard metric cards */
   .metric-card {
-    @apply hotel-card p-6 relative overflow-hidden;
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 relative overflow-hidden;
   }
 
   .metric-card::before {
@@ -210,7 +210,7 @@
 
   /* Guest card */
   .guest-card {
-    @apply hotel-card hover:shadow-md transition-shadow cursor-pointer;
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow cursor-pointer;
   }
 
   /* Housekeeping task card */
@@ -220,7 +220,7 @@
 
   /* Revenue chart container */
   .revenue-chart-container {
-    @apply hotel-card p-0 overflow-hidden;
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-0 overflow-hidden;
   }
 
   /* Quick action buttons */
