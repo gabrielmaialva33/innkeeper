@@ -124,7 +124,7 @@ export default function HotelDashboardPage({
             <CardDescription>Current occupancy by room category</CardDescription>
           </CardHeader>
           <CardContent>
-            <BarChart data={roomTypeChartData} />
+            <BarChart data={roomTypeChartData} bars={[]} xAxisKey={''} />
           </CardContent>
         </Card>
 
