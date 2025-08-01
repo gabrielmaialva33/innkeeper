@@ -4,15 +4,55 @@ import db from '@adonisjs/lucid/services/db'
 import logger from '@adonisjs/core/services/logger'
 
 export default class TenantContextMiddleware {
-  async handle({ auth, response }: HttpContext, next: NextFn) {
+  async handle({ auth, request }: HttpContext, next: NextFn) {
     try {
+      const url = request.url()
+
+      // Skip tenant context for static assets, auth routes, and system routes
+      const skipRoutes = [
+        '/login',
+        '/register',
+        '/auth',
+        '/version',
+        '/health',
+        '/@vite',
+        '/inertia',
+        '.js',
+        '.css',
+        '.png',
+        '.jpg',
+        '.svg',
+        '.ico',
+        '.woff',
+        '.woff2',
+        '.ttf',
+        '.map',
+      ]
+
+      const shouldSkip = url === '/' || skipRoutes.some((route) => url.includes(route))
+
+      if (shouldSkip) {
+        return await next()
+      }
+
+      // Try to check if user is authenticated
+      // Use a try-catch here as auth.user might throw if not authenticated
+      let user
+      try {
+        await auth.check()
+        user = auth.user
+      } catch {
+        // User is not authenticated, continue without tenant context
+        return await next()
+      }
+
       // Check if the user is authenticated
-      if (!auth.user) {
+      if (!user) {
         return await next()
       }
 
       // Get organization ID from an authenticated user
-      const organizationId = auth.user.organization_id
+      const organizationId = user.organization_id
 
       if (!organizationId) {
         // User is not associated with any organization
@@ -37,11 +77,8 @@ export default class TenantContextMiddleware {
     } catch (error) {
       logger.error('Error in TenantContextMiddleware:', error)
 
-      // Return error response
-      return response.status(500).json({
-        error: 'Internal server error',
-        message: 'Failed to set tenant context',
-      })
+      // Don't block the request on error, just log and continue
+      return await next()
     }
   }
 }
