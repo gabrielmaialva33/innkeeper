@@ -1,7 +1,6 @@
 import factory from '@adonisjs/lucid/factories'
 import GroupReservation from '#models/group_reservation'
 import { DateTime } from 'luxon'
-import { PricingHelper } from '../helpers/pricing_helper.js'
 
 export const GroupReservationFactory = factory
   .define(GroupReservation, async ({ faker }) => {
@@ -123,6 +122,7 @@ export const GroupReservationFactory = factory
           : selectedGroup.type === 'corporate'
             ? `${faker.company.name()} ${faker.helpers.arrayElement(['Annual Meeting', 'Training', 'Team Building', 'Strategy Session'])}`
             : `${faker.company.name()} ${selectedGroup.eventType}`,
+      event_date: arrivalDate.toISODate() || arrivalDate.toFormat('yyyy-MM-dd'),
       attendees: total_rooms * faker.number.int({ min: 1, max: 2 }),
       meeting_rooms: selectedGroup.needsMeetingRooms
         ? faker.helpers.arrayElements(
@@ -142,16 +142,16 @@ export const GroupReservationFactory = factory
     // Determine status based on dates and pickup
     let status: 'tentative' | 'confirmed' | 'cancelled' | 'completed' = 'tentative'
     if (daysUntilArrival < -7) {
-      status = faker.helpers.weighted([
-        ['completed', 8],
-        ['cancelled', 2],
+      status = faker.helpers.weightedArrayElement([
+        { weight: 8, value: 'completed' },
+        { weight: 2, value: 'cancelled' },
       ])
     } else if (picked_up_rooms > blocked_rooms * 0.3) {
       status = 'confirmed'
     } else if (daysUntilArrival > 90) {
-      status = faker.helpers.weighted([
-        ['tentative', 7],
-        ['confirmed', 3],
+      status = faker.helpers.weightedArrayElement([
+        { weight: 7, value: 'tentative' },
+        { weight: 3, value: 'confirmed' },
       ])
     }
 

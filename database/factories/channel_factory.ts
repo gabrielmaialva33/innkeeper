@@ -97,7 +97,7 @@ export const ChannelFactory = factory
               STE: 'Suite',
               PRES: 'Presidential Suite',
             }
-          : {},
+          : ({} as Record<string, string>),
       rate_plan_mapping:
         selectedType.type !== 'direct'
           ? {
@@ -105,7 +105,7 @@ export const ChannelFactory = factory
               PKG: 'Package Rate',
               CORP: 'Corporate Rate',
             }
-          : {},
+          : ({} as Record<string, string>),
       amenity_mapping:
         selectedType.type === 'ota'
           ? {
@@ -114,7 +114,7 @@ export const ChannelFactory = factory
               PARKING: 'free_parking',
               POOL: 'swimming_pool',
             }
-          : {},
+          : ({} as Record<string, string>),
       payment_mapping: {
         CC: 'credit_card',
         CASH: 'cash',

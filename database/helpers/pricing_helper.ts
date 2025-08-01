@@ -90,7 +90,7 @@ export class PricingHelper {
   /**
    * Get seasonal multiplier based on check-in date
    */
-  private static getSeasonalMultiplier(date: DateTime): number {
+  static getSeasonalMultiplier(date: DateTime): number {
     const month = date.month
 
     // Peak season: June-August, December

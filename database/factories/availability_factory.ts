@@ -14,7 +14,7 @@ export const AvailabilityFactory = factory
     const total_inventory = faker.number.int({ min: 5, max: 30 })
 
     // Calculate seasonal occupancy patterns
-    const seasonalMultiplier = PricingHelper.getSeasonalMultiplier(date.toJSDate())
+    const seasonalMultiplier = PricingHelper.getSeasonalMultiplier(date)
     const baseOccupancy = seasonalMultiplier > 1.2 ? 0.85 : seasonalMultiplier > 1 ? 0.7 : 0.5
 
     // Day of week patterns (weekends tend to be busier for leisure hotels)

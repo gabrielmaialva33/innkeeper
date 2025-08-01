@@ -21,12 +21,21 @@ export const RatePriceFactory = factory
     const baseRate = faker.helpers.arrayElement(baseRates)
 
     // Calculate dynamic pricing based on multiple factors
+    const stayLength = faker.number.int({ min: 1, max: 14 })
     const pricingFactors = {
       basePrice: baseRate.single,
-      checkInDate: date.toJSDate(),
-      leadTime: faker.number.int({ min: 0, max: 180 }),
+      checkInDate: date,
+      checkOutDate: date.plus({ days: stayLength }),
       occupancyRate: faker.number.float({ min: 0.3, max: 0.95 }),
-      stayLength: faker.number.int({ min: 1, max: 14 }),
+      roomTypeCategory: faker.helpers.arrayElement([
+        'economy',
+        'standard',
+        'deluxe',
+        'suite',
+        'presidential',
+      ] as const),
+      bookingLeadTime: faker.number.int({ min: 0, max: 180 }),
+      stayLength: stayLength,
     }
 
     const dynamicSinglePrice = PricingHelper.calculateDynamicPrice(pricingFactors)
@@ -97,7 +106,7 @@ export const RatePriceFactory = factory
       metadata: {
         created_via: 'factory',
         pricing_factors: pricingFactors,
-        seasonal_factor: PricingHelper.getSeasonalMultiplier(date.toJSDate()),
+        seasonal_factor: PricingHelper.getSeasonalMultiplier(date),
         day_of_week: date.weekdayLong,
       },
     }
