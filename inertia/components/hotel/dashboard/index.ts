@@ -1,7 +1,0 @@
-export { TodayOverview } from './today-overview'
-export { OccupancyMetrics } from './occupancy-metrics'
-export { RevenueAnalytics } from './revenue-analytics'
-export { RecentReservations } from './recent-reservations'
-export { RoomStatusSummary } from './room-status-summary'
-export { HousekeepingStatus } from './housekeeping-status'
-export { TopPerformingRooms } from './top-performing-rooms'
