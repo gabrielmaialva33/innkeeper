@@ -25,10 +25,7 @@ export function ThemeToggle() {
       <DropdownMenuContent align="end" className="w-44">
         <DropdownMenuItem
           onClick={() => setTheme('light')}
-          className={cn(
-            'flex items-center justify-between',
-            theme === 'light' && 'bg-accent'
-          )}
+          className={cn('flex items-center justify-between', theme === 'light' && 'bg-accent')}
         >
           <div className="flex items-center">
             <Sun className="mr-2 h-4 w-4" />
@@ -38,10 +35,7 @@ export function ThemeToggle() {
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setTheme('dark')}
-          className={cn(
-            'flex items-center justify-between',
-            theme === 'dark' && 'bg-accent'
-          )}
+          className={cn('flex items-center justify-between', theme === 'dark' && 'bg-accent')}
         >
           <div className="flex items-center">
             <Moon className="mr-2 h-4 w-4" />
@@ -51,10 +45,7 @@ export function ThemeToggle() {
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setTheme('system')}
-          className={cn(
-            'flex items-center justify-between',
-            theme === 'system' && 'bg-accent'
-          )}
+          className={cn('flex items-center justify-between', theme === 'system' && 'bg-accent')}
         >
           <div className="flex items-center">
             <Monitor className="mr-2 h-4 w-4" />
