@@ -26,13 +26,12 @@ export function HeroSection({ className = '' }: HeroSectionProps) {
     >
       {/* Simple Flat Background with subtle gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-background" />
-      
+
       {/* Optional subtle pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
 
       {/* Content */}
       <div className="relative z-10 text-center max-w-5xl mx-auto">
-
         {/* Main Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -149,7 +148,6 @@ export function HeroSection({ className = '' }: HeroSectionProps) {
           </Link>
         </motion.div>
       </div>
-
     </motion.div>
   )
 }

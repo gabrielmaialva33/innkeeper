@@ -19,7 +19,7 @@
     --secondary-foreground: 0 0% 100%;
 
     --muted: 60 25% 94%; /* Warmer muted */
-    --muted-foreground: 236 30% 45%;
+    --muted-foreground: 236 35% 35%; /* Improved contrast for better readability */
 
     --accent: 32 55% 65%; /* More vibrant terracota */
     --accent-foreground: 0 0% 100%;

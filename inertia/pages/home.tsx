@@ -274,7 +274,11 @@ export default function Home() {
                 >
                   Agendar Demonstração
                 </Button>
-                <Button size="lg" variant="ghost" className="hover:scale-105 transition-transform text-primary hover:text-primary-foreground hover:bg-primary">
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="hover:scale-105 transition-transform text-primary hover:text-primary-foreground hover:bg-primary"
+                >
                   Falar com Especialista
                 </Button>
               </div>
@@ -424,7 +428,7 @@ export default function Home() {
       </section>
 
       {/* CTA Final Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 tech-gradient-primary relative overflow-hidden">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
 
