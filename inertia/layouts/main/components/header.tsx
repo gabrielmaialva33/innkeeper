@@ -55,7 +55,7 @@ export function Header({ onToggleSidebar, isMobile = false }: HeaderProps) {
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
               type="search"
-              placeholder="Search..."
+              placeholder="Buscar..."
               className="h-9 w-full rounded-md border border-input bg-background pl-10 pr-3 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
@@ -92,20 +92,20 @@ export function Header({ onToggleSidebar, isMobile = false }: HeaderProps) {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
+                  <span>Perfil</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
+                  <span>Configurações</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <FileText className="mr-2 h-4 w-4" />
-                  <span>Documentation</span>
+                  <span>Documentação</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout} className="text-destructive">
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
+                  <span>Sair</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

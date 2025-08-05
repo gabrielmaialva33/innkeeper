@@ -19,21 +19,21 @@ export function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <FormInput
-        label="Email or Username"
+        label="Email ou Usuário"
         id="uid"
         type="text"
         name="uid"
         value={data.uid}
         onChange={(e) => setData('uid', e.target.value)}
         errorMessage={errors.uid}
-        placeholder="john@example.com"
+        placeholder="joao@exemplo.com"
         required
         autoComplete="username"
         leftIcon={<Mail className="h-4 w-4" />}
       />
 
       <FormInput
-        label="Password"
+        label="Senha"
         id="password"
         type="password"
         name="password"
@@ -45,7 +45,7 @@ export function LoginForm() {
         leftIcon={<Lock className="h-4 w-4" />}
         rightAdornment={
           <Link href="/forgot-password" className="text-xs text-primary hover:underline">
-            Forgot password?
+            Esqueceu a senha?
           </Link>
         }
       />
@@ -58,7 +58,7 @@ export function LoginForm() {
           className="w-full"
           size="lg"
         >
-          Sign in
+          Entrar
         </Button>
 
         <div className="relative">
@@ -66,7 +66,7 @@ export function LoginForm() {
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+            <span className="bg-background px-2 text-muted-foreground">Ou continue com</span>
           </div>
         </div>
 

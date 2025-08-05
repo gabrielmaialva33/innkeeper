@@ -32,8 +32,8 @@ export function RegisterForm() {
     <Card className="w-full max-w-md">
       <form onSubmit={handleSubmit}>
         <CardHeader>
-          <CardTitle>Create an account</CardTitle>
-          <CardDescription>Enter your information to get started</CardDescription>
+          <CardTitle>Criar uma conta</CardTitle>
+          <CardDescription>Digite suas informações para começar</CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">
@@ -44,13 +44,13 @@ export function RegisterForm() {
           )}
 
           <FormInput
-            label="Full Name"
+            label="Nome Completo"
             type="text"
             name="full_name"
             value={data.full_name}
             onChange={(e) => setData('full_name', e.target.value)}
             errorMessage={errors.full_name}
-            placeholder="John Doe"
+            placeholder="João Silva"
             required
             autoComplete="name"
           />
@@ -62,36 +62,36 @@ export function RegisterForm() {
             value={data.email}
             onChange={(e) => setData('email', e.target.value)}
             errorMessage={errors.email}
-            placeholder="john@example.com"
+            placeholder="joao@exemplo.com"
             required
             autoComplete="email"
           />
 
           <FormInput
-            label="Username (optional)"
+            label="Usuário (opcional)"
             type="text"
             name="username"
             value={data.username}
             onChange={(e) => setData('username', e.target.value)}
             errorMessage={errors.username}
-            placeholder="johndoe"
+            placeholder="joaosilva"
             autoComplete="username"
           />
 
           <FormInput
-            label="Password"
+            label="Senha"
             type="password"
             name="password"
             value={data.password}
             onChange={(e) => setData('password', e.target.value)}
             errorMessage={errors.password}
-            hint="Must be at least 8 characters"
+            hint="Deve ter pelo menos 8 caracteres"
             required
             autoComplete="new-password"
           />
 
           <FormInput
-            label="Confirm Password"
+            label="Confirmar Senha"
             type="password"
             name="password_confirmation"
             value={data.password_confirmation}
@@ -104,7 +104,7 @@ export function RegisterForm() {
 
         <CardFooter>
           <Button type="submit" loading={processing} disabled={processing} className="w-full">
-            Create account
+            Criar conta
           </Button>
         </CardFooter>
       </form>

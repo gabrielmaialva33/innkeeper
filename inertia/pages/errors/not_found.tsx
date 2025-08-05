@@ -2,9 +2,9 @@ export default function NotFound() {
   return (
     <>
       <div className="container">
-        <div className="title">Page not found</div>
+        <div className="title">Página não encontrada</div>
 
-        <span>This page does not exist.</span>
+        <span>Esta página não existe.</span>
       </div>
     </>
   )
