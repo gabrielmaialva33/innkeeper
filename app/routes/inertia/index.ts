@@ -14,7 +14,6 @@ const InertiaAuthController = () => import('#controllers/inertia/auth_controller
 const InertiaDashboardController = () => import('#controllers/inertia/dashboard_controller')
 const InertiaUsersController = () => import('#controllers/inertia/users_controller')
 const InertiaFilesController = () => import('#controllers/inertia/files_controller')
-const HotelRoomsController = () => import('#controllers/hotel/rooms_controller')
 
 // Public routes - with guest middleware to redirect authenticated users
 router
@@ -51,19 +50,6 @@ router
   .group(() => {
     // Dashboard
     router.get('/dashboard', [InertiaDashboardController, 'index']).as('dashboard')
-
-    // Hotel Management
-    router
-      .get('/hotel/dashboard', [InertiaDashboardController, 'hotelDashboard'])
-      .as('hotel.dashboard')
-    router.get('/hotel/rooms', [HotelRoomsController, 'index']).as('hotel.rooms')
-
-    // UI Demo Page
-    router
-      .get('/ui-demo', async ({ inertia }) => {
-        return inertia.render('ui_demo')
-      })
-      .as('ui-demo')
 
     // Users - with permission check
     router
