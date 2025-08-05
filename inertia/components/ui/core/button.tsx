@@ -20,8 +20,10 @@ const buttonVariants = cva(
         ghost:
           'text-accent-foreground hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-        success: 'bg-success text-success-foreground hover:bg-success/90 data-[state=open]:bg-success/90',
-        warning: 'bg-warning text-warning-foreground hover:bg-warning/90 data-[state=open]:bg-warning/90',
+        success:
+          'bg-success text-success-foreground hover:bg-success/90 data-[state=open]:bg-success/90',
+        warning:
+          'bg-warning text-warning-foreground hover:bg-warning/90 data-[state=open]:bg-warning/90',
         info: 'bg-info text-info-foreground hover:bg-info/90 data-[state=open]:bg-info/90',
       },
       size: {

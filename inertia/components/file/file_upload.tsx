@@ -75,7 +75,9 @@ export function FileUpload() {
         {selectedFile && (
           <div className="bg-muted rounded-md p-4">
             <p className="text-sm font-medium text-foreground">{selectedFile.name}</p>
-            <p className="text-xs text-muted-foreground mt-1">Size: {formatFileSize(selectedFile.size)}</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Size: {formatFileSize(selectedFile.size)}
+            </p>
           </div>
         )}
 

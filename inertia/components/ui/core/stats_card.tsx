@@ -37,9 +37,7 @@ export function StatsCard({
                 <span
                   className={cn(
                     'flex items-center text-xs font-medium',
-                    isPositiveTrend
-                      ? 'text-success'
-                      : 'text-destructive'
+                    isPositiveTrend ? 'text-success' : 'text-destructive'
                   )}
                 >
                   {isPositiveTrend ? (
