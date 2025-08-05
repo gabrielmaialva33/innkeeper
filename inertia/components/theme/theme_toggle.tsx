@@ -26,7 +26,7 @@ export function ThemeToggle() {
         <DropdownMenuItem
           onClick={() => setTheme('light')}
           className={cn(
-            'flex items-center justify-between px-2 py-1.5 text-sm hover:bg-accent rounded cursor-pointer',
+            'flex items-center justify-between',
             theme === 'light' && 'bg-accent'
           )}
         >
@@ -39,7 +39,7 @@ export function ThemeToggle() {
         <DropdownMenuItem
           onClick={() => setTheme('dark')}
           className={cn(
-            'flex items-center justify-between px-2 py-1.5 text-sm hover:bg-accent rounded cursor-pointer',
+            'flex items-center justify-between',
             theme === 'dark' && 'bg-accent'
           )}
         >
@@ -52,7 +52,7 @@ export function ThemeToggle() {
         <DropdownMenuItem
           onClick={() => setTheme('system')}
           className={cn(
-            'flex items-center justify-between px-2 py-1.5 text-sm hover:bg-accent rounded cursor-pointer',
+            'flex items-center justify-between',
             theme === 'system' && 'bg-accent'
           )}
         >
