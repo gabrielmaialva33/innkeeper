@@ -169,7 +169,7 @@ export function HeroSection({ className = '' }: HeroSectionProps) {
               <Button
                 variant="ghost"
                 size="lg"
-                className="w-full sm:w-auto min-w-[160px] text-lg px-8 py-4"
+                className="w-full sm:w-auto min-w-[160px] text-lg px-8 py-4 text-primary hover:text-primary-foreground hover:bg-primary"
               >
                 Criar Conta
               </Button>

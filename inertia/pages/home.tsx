@@ -274,7 +274,7 @@ export default function Home() {
                 >
                   Agendar Demonstração
                 </Button>
-                <Button size="lg" variant="ghost" className="hover:scale-105 transition-transform">
+                <Button size="lg" variant="ghost" className="hover:scale-105 transition-transform text-primary hover:text-primary-foreground hover:bg-primary">
                   Falar com Especialista
                 </Button>
               </div>
