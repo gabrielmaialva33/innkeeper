@@ -30,7 +30,8 @@
       "mcp__playwright__browser_click",
       "mcp__playwright__browser_evaluate",
       "mcp__fountain-pen-ink-server__analyze_color",
-      "Bash(pnpm add:*)"
+      "Bash(pnpm add:*)",
+      "mcp__fountain-pen-ink-server__get_color_palette"
     ],
     "deny": []
   }
