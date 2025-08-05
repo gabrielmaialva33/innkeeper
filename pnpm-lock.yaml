@@ -280,8 +280,8 @@ importers:
         specifier: ^7.8.2
         version: 7.8.2(typescript@5.9.2)
       '@adonisjs/eslint-config':
-        specifier: ^2.1.0
-        version: 2.1.0(eslint@9.32.0(jiti@2.5.1))(prettier@3.6.2)(typescript@5.9.2)
+        specifier: ^2.1.1
+        version: 2.1.1(eslint@9.32.0(jiti@2.5.1))(prettier@3.6.2)(typescript@5.9.2)
       '@adonisjs/prettier-config':
         specifier: ^1.4.5
         version: 1.4.5
@@ -499,14 +499,14 @@ packages:
     resolution: {integrity: sha512-DZ7zQ4sBhzWftjU/SxJ7BstimrEiByCvmtAcMNDpDjOtJnR50172PRz1X7KjM3EqjCVrB19izzRVx/rmpCRPOA==}
     engines: {node: '>=18.16.0'}
 
-  '@adonisjs/eslint-config@2.1.0':
-    resolution: {integrity: sha512-JMa3m0BTI+chOGae5RjmmPvN7ugL/rgvADoChbeoHiIbpWB2QmAKoOF/Hv8DNDWWv3ZNwabi5Dpo5jL7dGWatQ==}
+  '@adonisjs/eslint-config@2.1.1':
+    resolution: {integrity: sha512-fi79HBLRDlKbhR2b2SEkbvea1FYaEsPVr3yIUfBRperRRhedHFZKvqArAVEswnofmnlLsuW8IH3gqr6EIdJlug==}
     peerDependencies:
       eslint: ^9.9.0
       prettier: ^3.3.3
 
-  '@adonisjs/eslint-plugin@2.0.0':
-    resolution: {integrity: sha512-C51Wd1YtgSQ9JssP7eqdNI8X58ZxOW+8Z5nm9BHnSM/mpcx1nexAKao69eYDx6TcSvmRKKrEHwdJOMas25NAaQ==}
+  '@adonisjs/eslint-plugin@2.0.1':
+    resolution: {integrity: sha512-tvmmnnz5wr/YLcRPX2wn63iU2JdFwUzyMWW0eKWXE1BhQ2ulH/eIb0PDNoE43/0gIKq2LrILJyoNYc696gqUCg==}
     engines: {node: '>=20.6.0'}
     peerDependencies:
       eslint: ^9.9.1
@@ -7240,9 +7240,9 @@ snapshots:
       dotenv: 16.6.1
       split-lines: 3.0.0
 
-  '@adonisjs/eslint-config@2.1.0(eslint@9.32.0(jiti@2.5.1))(prettier@3.6.2)(typescript@5.9.2)':
+  '@adonisjs/eslint-config@2.1.1(eslint@9.32.0(jiti@2.5.1))(prettier@3.6.2)(typescript@5.9.2)':
     dependencies:
-      '@adonisjs/eslint-plugin': 2.0.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2)
+      '@adonisjs/eslint-plugin': 2.0.1(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2)
       '@stylistic/eslint-plugin-ts': 4.4.1(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2)
       eslint: 9.32.0(jiti@2.5.1)
       eslint-config-prettier: 10.1.8(eslint@9.32.0(jiti@2.5.1))
@@ -7255,7 +7255,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@adonisjs/eslint-plugin@2.0.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2)':
+  '@adonisjs/eslint-plugin@2.0.1(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2)':
     dependencies:
       '@typescript-eslint/utils': 8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2)
       eslint: 9.32.0(jiti@2.5.1)
