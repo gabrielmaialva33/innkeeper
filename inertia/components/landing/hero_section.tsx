@@ -2,6 +2,9 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Button } from '~/components/ui/core/button'
 import { ParticleBackground } from './particle_background'
+import { GeometricBackground } from './geometric_background'
+import { GradientOrbs } from './gradient_orbs'
+import { FloatingDots } from './floating_dots'
 import { Link } from '@inertiajs/react'
 import { Sparkles, TrendingUp, Shield, Clock } from 'lucide-react'
 
@@ -25,11 +28,14 @@ export function HeroSection({ className = '' }: HeroSectionProps) {
       className={`relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden ${className}`}
       style={{ y, opacity }}
     >
-      {/* Particle Background */}
-      <ParticleBackground className="opacity-60" particleCount={80} showOnHover={true} />
+      {/* Layered Background Effects */}
+      <GradientOrbs className="opacity-40" orbCount={4} maxRadius={160} />
+      <GeometricBackground className="opacity-50" shapeCount={8} maxSize={30} />
+      <FloatingDots className="opacity-30" dotCount={60} columns={10} />
+      <ParticleBackground className="opacity-60" particleCount={40} showOnHover={true} />
 
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-20" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
       {/* Gradient Overlay */}
       <motion.div
@@ -178,25 +184,50 @@ export function HeroSection({ className = '' }: HeroSectionProps) {
         </motion.div>
       </div>
 
-      {/* Floating Elements */}
+      {/* Floating Elements with Glamour Effects */}
       <div className="absolute inset-0 pointer-events-none">
         {[
-          { size: 'w-16 h-16', position: 'top-20 left-10', delay: 0 },
-          { size: 'w-20 h-20', position: 'bottom-20 right-10', delay: 1 },
-          { size: 'w-12 h-12', position: 'top-1/2 right-20', delay: 2 },
+          { size: 'w-16 h-16', position: 'top-20 left-10', delay: 0, color: 'bg-primary/10' },
+          { size: 'w-20 h-20', position: 'bottom-20 right-10', delay: 1, color: 'bg-secondary/8' },
+          { size: 'w-12 h-12', position: 'top-1/2 right-20', delay: 2, color: 'bg-accent/6' },
+          { size: 'w-14 h-14', position: 'top-1/3 left-1/4', delay: 1.5, color: 'bg-primary/6' },
+          { size: 'w-18 h-18', position: 'bottom-1/3 left-20', delay: 2.5, color: 'bg-secondary/5' },
         ].map((element, index) => (
           <motion.div
             key={index}
-            className={`absolute ${element.size} ${element.position} bg-primary/5 rounded-full blur-xl hidden lg:block`}
+            className={`absolute ${element.size} ${element.position} ${element.color} rounded-full blur-2xl hidden lg:block`}
             animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3],
+              scale: [1, 1.3, 0.9, 1],
+              opacity: [0.2, 0.7, 0.4, 0.2],
+              rotate: [0, 180, 360],
             }}
             transition={{
-              duration: 4,
+              duration: 6 + index,
               repeat: Infinity,
               ease: 'easeInOut',
               delay: element.delay,
+            }}
+          />
+        ))}
+        
+        {/* Subtle glowing rings */}
+        {[
+          { size: 'w-32 h-32', position: 'top-16 right-1/4', delay: 3 },
+          { size: 'w-24 h-24', position: 'bottom-24 left-1/3', delay: 4 },
+        ].map((ring, index) => (
+          <motion.div
+            key={`ring-${index}`}
+            className={`absolute ${ring.size} ${ring.position} border border-primary/20 rounded-full hidden lg:block`}
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.3, 0.1],
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: 'linear',
+              delay: ring.delay,
             }}
           />
         ))}
