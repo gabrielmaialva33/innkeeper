@@ -160,6 +160,28 @@
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   }
 
+  /* Background utilities */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-from), var(--tw-gradient-to));
+  }
+
+  .bg-noise {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(255, 255, 255, 0.3) 1px,
+      transparent 0
+    );
+    background-size: 20px 20px;
+  }
+
+  /* Grid pattern */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
   /* Icon gradient backgrounds */
   .icon-gradient-primary {
     background: linear-gradient(to bottom right, hsl(var(--primary)), hsl(var(--primary) / 0.7));

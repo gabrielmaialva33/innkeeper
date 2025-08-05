@@ -2,6 +2,7 @@ import * as React from 'react'
 import { ArrowDown, ArrowUp, LucideIcon } from 'lucide-react'
 import { cn } from '~/utils/cn'
 import { Card, CardContent } from './card'
+import { CountingNumber } from '~/components/ui/counting-number'
 
 interface StatsCardProps {
   title: string
@@ -11,8 +12,10 @@ interface StatsCardProps {
   trend?: {
     value: number
     label?: string
+    type?: 'up' | 'down'
   }
   className?: string
+  animate?: boolean
 }
 
 export function StatsCard({
@@ -22,8 +25,9 @@ export function StatsCard({
   icon: Icon,
   trend,
   className,
+  animate = true,
 }: StatsCardProps) {
-  const isPositiveTrend = trend && trend.value > 0
+  const isPositiveTrend = trend && (trend.type === 'up' || trend.value > 0)
 
   return (
     <Card className={cn('relative overflow-hidden', className)}>
@@ -32,7 +36,23 @@ export function StatsCard({
           <div className="space-y-1">
             <p className="text-sm font-medium text-muted-foreground">{title}</p>
             <div className="flex items-baseline gap-2">
-              <h2 className="text-2xl font-bold tracking-tight">{value}</h2>
+              <h2 className="text-2xl font-bold tracking-tight">
+                {animate && typeof value === 'number' ? (
+                  <CountingNumber value={value} delay={0.2} duration={2} />
+                ) : animate && typeof value === 'string' && value.match(/^\+?(\d+)%?$/) ? (
+                  <>
+                    {value.startsWith('+') ? '+' : ''}
+                    <CountingNumber
+                      value={parseInt(value.replace(/[+%]/g, ''))}
+                      delay={0.2}
+                      duration={1.5}
+                    />
+                    {value.endsWith('%') ? '%' : ''}
+                  </>
+                ) : (
+                  value
+                )}
+              </h2>
               {trend && (
                 <span
                   className={cn(

@@ -3,6 +3,9 @@ import { useRef } from 'react'
 import { Button } from '~/components/ui/core/button'
 import { Link } from '@inertiajs/react'
 import { TrendingUp, Shield, Clock } from 'lucide-react'
+import { TextReveal } from '~/components/ui/text-reveal'
+import { TypingText } from '~/components/ui/typing-text'
+import { GridBackground } from '~/components/ui/grid-background'
 
 interface HeroSectionProps {
   className?: string
@@ -24,52 +27,114 @@ export function HeroSection({ className = '' }: HeroSectionProps) {
       className={`relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden ${className}`}
       style={{ y, opacity }}
     >
-      {/* Simple Flat Background with subtle gradient */}
+      {/* Multi-layer Background */}
+      {/* Base gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-background" />
 
-      {/* Optional subtle pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
+      {/* Radial gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-secondary/5" />
+
+      {/* GridBackground with Innkeeper colors */}
+      <GridBackground
+        gridSize="16:10"
+        colors={{
+          background: 'bg-transparent',
+          borderColor: 'border-muted/15',
+          borderSize: '1px',
+          borderStyle: 'solid',
+        }}
+        beams={{
+          count: 6,
+          colors: [
+            'bg-primary/25', // sage green
+            'bg-secondary/20', // blue grey
+            'bg-accent/20', // terracotta
+            'bg-primary/15', // sage green lighter
+            'bg-secondary/15', // blue grey lighter
+            'bg-accent/15', // terracotta lighter
+          ],
+          speed: 12,
+        }}
+        className="absolute inset-0"
+      />
+
+      {/* Decorative shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Top right circle */}
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl" />
+        {/* Bottom left circle */}
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-secondary/10 to-transparent rounded-full blur-3xl" />
+        {/* Center accent */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl" />
+      </div>
+
+      {/* Subtle noise texture */}
+      <div className="absolute inset-0 bg-noise opacity-[0.02]" />
 
       {/* Content */}
       <div className="relative z-10 text-center max-w-5xl mx-auto">
         {/* Main Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.21, 1.11, 0.81, 0.99] }}
-          className="mb-6"
-        >
+        <div className="mb-6">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-4">
-            <motion.span
-              className="block"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              Innkeeper
-            </motion.span>
-            <motion.span
-              className="block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              Sistema Hoteleiro
-            </motion.span>
+            <div className="block">
+              <TextReveal
+                variant="slideUp"
+                delay={0.2}
+                staggerDelay={0.05}
+                className="hover:scale-105 transition-transform duration-300"
+              >
+                Innkeeper
+              </TextReveal>
+            </div>
+            <div className="block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <TextReveal
+                variant="slideUp"
+                delay={0.6}
+                staggerDelay={0.05}
+                className="hover:scale-105 transition-transform duration-300"
+              >
+                Sistema Hoteleiro
+              </TextReveal>
+            </div>
           </h1>
-        </motion.div>
+        </div>
 
         {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed"
-        >
-          Simplifique a gestão do seu hotel com nossa plataforma completa.{' '}
-          <span className="text-foreground font-medium">
-            Reservas, hóspedes, quartos e relatórios
-          </span>{' '}
-          em um só lugar.
-        </motion.p>
+        <div className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed text-center">
+          <div className="mb-2">
+            <TextReveal
+              variant="fade"
+              delay={1.0}
+              duration={0.8}
+              staggerDelay={0.02}
+              className="inline"
+            >
+              Simplifique a gestão do seu hotel com nossa plataforma completa.
+            </TextReveal>
+          </div>
+          <div className="text-foreground font-medium min-h-[2.5rem] flex items-center justify-center">
+            <TypingText
+              texts={[
+                'Reservas, hóspedes, quartos e relatórios',
+                'Check-in/out automatizado e dashboards',
+                'Gestão financeira e analytics avançados',
+                'CRM completo e housekeeping inteligente',
+              ]}
+              loop={true}
+              speed={80}
+              delay={2000}
+              pauseDuration={3000}
+              showCursor={true}
+              cursor="|"
+              cursorClassName="text-primary"
+            />
+          </div>
+          <div>
+            <TextReveal variant="fade" delay={2.2} duration={0.6} className="inline">
+              em um só lugar.
+            </TextReveal>
+          </div>
+        </div>
 
         {/* Quick Metrics */}
         <motion.div

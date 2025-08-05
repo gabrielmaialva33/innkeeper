@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { LucideIcon } from 'lucide-react'
 import { ReactNode } from 'react'
+import { TextReveal } from '~/components/ui/text-reveal'
 
 interface AnimatedFeatureCardProps {
   title: string
@@ -30,13 +31,14 @@ export function AnimatedFeatureCard({
         ease: [0.21, 1.11, 0.81, 0.99],
       }}
       whileHover={{
-        y: -8,
+        y: -12,
+        scale: 1.02,
         transition: {
           duration: 0.3,
           ease: 'easeOut',
         },
       }}
-      className={`group relative bg-card rounded-xl p-6 border border-border shadow-sm hover:shadow-lg transition-shadow duration-300 ${className}`}
+      className={`group relative bg-card rounded-xl p-6 border border-border shadow-sm hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 ${className}`}
     >
       {/* Hover gradient overlay */}
       <motion.div
@@ -69,11 +71,15 @@ export function AnimatedFeatureCard({
           className="font-semibold text-foreground mb-3 text-lg group-hover:text-primary transition-colors duration-300"
           layout
         >
-          {title}
+          <TextReveal variant="slideUp" delay={delay + 0.2} staggerDelay={0.03}>
+            {title}
+          </TextReveal>
         </motion.h3>
 
         <motion.p className="text-muted-foreground leading-relaxed" layout>
-          {description}
+          <TextReveal variant="fade" delay={delay + 0.4} staggerDelay={0.01}>
+            {description}
+          </TextReveal>
         </motion.p>
 
         {children && (
@@ -94,6 +100,14 @@ export function AnimatedFeatureCard({
           duration: 3,
           repeat: Infinity,
           ease: 'easeInOut',
+        }}
+      />
+
+      {/* Hover border effect */}
+      <motion.div
+        className="absolute inset-0 rounded-xl border-2 border-primary/0 group-hover:border-primary/20 transition-colors duration-300"
+        whileHover={{
+          boxShadow: 'inset 0 0 20px rgba(132, 167, 122, 0.1)',
         }}
       />
     </motion.div>

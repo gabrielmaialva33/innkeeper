@@ -6,6 +6,7 @@ import { AnimatedFeatureCard } from '~/components/landing/animated_feature_card'
 import { InteractiveTimeline } from '~/components/landing/interactive_timeline'
 import { StatsCounter } from '~/components/landing/stats_counter'
 import { ScrollReveal, StaggerContainer, StaggerItem } from '~/components/animations/scroll_reveal'
+import { TextReveal } from '~/components/ui/text-reveal'
 import {
   Hotel,
   BarChart3,
@@ -38,11 +39,15 @@ export default function Home() {
           {/* Section Header */}
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Conheça nossas principais soluções
+              <TextReveal variant="slideUp" delay={0.1} staggerDelay={0.04} wordLevel={true}>
+                Conheça nossas principais soluções
+              </TextReveal>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              O Innkeeper é uma plataforma completa com soluções tecnológicas que tornam mais
-              simples, produtivo, eficiente e seguro o processo de gestão hoteleira.
+              <TextReveal variant="fade" delay={0.4} staggerDelay={0.01}>
+                O Innkeeper é uma plataforma completa com soluções tecnológicas que tornam mais
+                simples, produtivo, eficiente e seguro o processo de gestão hoteleira.
+              </TextReveal>
             </p>
           </div>
 
@@ -111,11 +116,15 @@ export default function Home() {
           {/* Section Header */}
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Por que hotéis escolhem o Innkeeper?
+              <TextReveal variant="slideUp" delay={0.1} staggerDelay={0.04} wordLevel={true}>
+                Por que hotéis escolhem o Innkeeper?
+              </TextReveal>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Resultados comprovados que transformam a gestão hoteleira e impulsionam o crescimento
-              do seu negócio.
+              <TextReveal variant="fade" delay={0.4} staggerDelay={0.015}>
+                Resultados comprovados que transformam a gestão hoteleira e impulsionam o
+                crescimento do seu negócio.
+              </TextReveal>
             </p>
           </div>
 
