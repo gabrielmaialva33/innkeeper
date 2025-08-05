@@ -7,7 +7,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@radix-ui/react-dropdown-menu'
+} from '~/components/ui/core/dropdown_menu'
 import { cn } from '~/utils/cn'
 
 export function ThemeToggle() {
