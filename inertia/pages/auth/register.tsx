@@ -18,9 +18,9 @@ export default function RegisterPage({ errors }: RegisterPageProps) {
         <header className="p-6 lg:p-8">
           <Link href="/" className="flex items-center gap-2">
             <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">A</span>
+              <span className="text-primary-foreground font-bold text-lg">🏨</span>
             </div>
-            <span className="text-xl font-bold">AdonisKit</span>
+            <span className="text-xl font-bold">Innkeeper</span>
           </Link>
         </header>
 
@@ -50,7 +50,7 @@ export default function RegisterPage({ errors }: RegisterPageProps) {
         {/* Footer */}
         <footer className="p-6 lg:p-8">
           <div className="flex items-center justify-between text-sm text-muted-foreground">
-            <span>&copy; 2025 AdonisKit. All rights reserved.</span>
+            <span>&copy; 2025 Innkeeper. All rights reserved.</span>
             <ThemeToggle />
           </div>
         </footer>
@@ -61,10 +61,10 @@ export default function RegisterPage({ errors }: RegisterPageProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5" />
         <div className="absolute inset-0 flex items-center justify-center p-12">
           <div className="max-w-md text-center">
-            <h2 className="text-4xl font-bold mb-4">Join AdonisKit Today</h2>
+            <h2 className="text-4xl font-bold mb-4">Join Innkeeper Today</h2>
             <p className="text-lg text-muted-foreground">
-              Start building amazing applications with our powerful toolkit. Get access to
-              authentication, user management, file uploads, and more.
+              Start managing your hotel with our comprehensive system. Access guest management,
+              reservations, housekeeping, and detailed analytics.
             </p>
           </div>
         </div>

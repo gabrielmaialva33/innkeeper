@@ -15,9 +15,9 @@ export default function LoginPage() {
         <header className="p-6 lg:p-8">
           <Link href="/" className="flex items-center gap-2">
             <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">A</span>
+              <span className="text-primary-foreground font-bold text-lg">🏨</span>
             </div>
-            <span className="text-xl font-bold">AdonisKit</span>
+            <span className="text-xl font-bold">Innkeeper</span>
           </Link>
         </header>
 
@@ -47,7 +47,7 @@ export default function LoginPage() {
         {/* Footer */}
         <footer className="p-6 lg:p-8">
           <div className="flex items-center justify-between text-sm text-muted-foreground">
-            <span>&copy; 2025 AdonisKit. All rights reserved.</span>
+            <span>&copy; 2025 Innkeeper. All rights reserved.</span>
             <ThemeToggle />
           </div>
         </footer>
@@ -58,10 +58,10 @@ export default function LoginPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5" />
         <div className="absolute inset-0 flex items-center justify-center p-12">
           <div className="max-w-md text-center">
-            <h2 className="text-4xl font-bold mb-4">Welcome to AdonisKit</h2>
+            <h2 className="text-4xl font-bold mb-4">Welcome to Innkeeper</h2>
             <p className="text-lg text-muted-foreground">
-              A modern, full-stack web application starter kit built with AdonisJS and React. Get
-              started quickly with authentication, user management, and more.
+              Complete hotel management system designed for modern hospitality. Manage reservations,
+              guests, rooms, and operations with ease.
             </p>
           </div>
         </div>

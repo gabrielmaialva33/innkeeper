@@ -38,8 +38,8 @@ export function StatsCard({
                   className={cn(
                     'flex items-center text-xs font-medium',
                     isPositiveTrend
-                      ? 'text-green-600 dark:text-green-500'
-                      : 'text-red-600 dark:text-red-500'
+                      ? 'text-success'
+                      : 'text-destructive'
                   )}
                 >
                   {isPositiveTrend ? (

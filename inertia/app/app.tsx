@@ -11,7 +11,7 @@ import { QueryProvider } from '~/providers/query_provider'
 const appName = import.meta.env.VITE_APP_NAME || 'AdonisJS'
 
 createInertiaApp({
-  progress: { color: '#5468FF' },
+  progress: { color: 'hsl(var(--primary))' },
 
   title: (title) => `${title} - ${appName}`,
 

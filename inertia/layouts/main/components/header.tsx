@@ -37,9 +37,9 @@ export function Header({ onToggleSidebar, isMobile = false }: HeaderProps) {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 mr-6">
           <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold">A</span>
+            <span className="text-primary-foreground font-bold">🏨</span>
           </div>
-          <span className="text-lg font-semibold hidden sm:inline-block">AdonisKit</span>
+          <span className="text-lg font-semibold hidden sm:inline-block">Innkeeper</span>
         </Link>
 
         {/* Desktop toggle */}

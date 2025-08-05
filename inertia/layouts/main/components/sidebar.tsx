@@ -1,14 +1,20 @@
 import { Link, usePage } from '@inertiajs/react'
 import { useState } from 'react'
 import {
+  CalendarDays,
   ChevronDown,
   ChevronRight,
   Home,
+  Hotel,
   type LucideIcon,
   Settings,
   Shield,
   Upload,
   Users,
+  UserCheck,
+  BedDouble,
+  Receipt,
+  BarChart3,
 } from 'lucide-react'
 
 import { cn } from '~/utils/cn'
@@ -28,29 +34,71 @@ const menuItems: MenuItem[] = [
     icon: Home,
   },
   {
-    title: 'Users',
-    icon: Users,
+    title: 'Reservas',
+    icon: CalendarDays,
     children: [
-      { title: 'All Users', href: '/users' },
-      { title: 'Roles', href: '/roles' },
-      { title: 'Permissions', href: '/permissions' },
+      { title: 'Todas Reservas', href: '/reservations' },
+      { title: 'Check-in/Check-out', href: '/checkin' },
+      { title: 'Disponibilidade', href: '/availability' },
     ],
   },
   {
-    title: 'Files',
+    title: 'Hóspedes',
+    href: '/guests',
+    icon: UserCheck,
+  },
+  {
+    title: 'Quartos',
+    icon: BedDouble,
+    children: [
+      { title: 'Inventário', href: '/rooms' },
+      { title: 'Tipos de Quarto', href: '/room-types' },
+      { title: 'Manutenção', href: '/maintenance' },
+    ],
+  },
+  {
+    title: 'Faturamento',
+    icon: Receipt,
+    children: [
+      { title: 'Faturas', href: '/invoices' },
+      { title: 'Pagamentos', href: '/payments' },
+      { title: 'Taxas & Tarifas', href: '/rates' },
+    ],
+  },
+  {
+    title: 'Relatórios',
+    href: '/reports',
+    icon: BarChart3,
+  },
+  {
+    title: 'Propriedades',
+    href: '/hotels',
+    icon: Hotel,
+  },
+  {
+    title: 'Usuários',
+    icon: Users,
+    children: [
+      { title: 'Todos Usuários', href: '/users' },
+      { title: 'Funções', href: '/roles' },
+      { title: 'Permissões', href: '/permissions' },
+    ],
+  },
+  {
+    title: 'Arquivos',
     href: '/files',
     icon: Upload,
   },
   {
-    title: 'Security',
+    title: 'Segurança',
     icon: Shield,
     children: [
-      { title: 'Audit Logs', href: '/audit-logs' },
-      { title: 'Sessions', href: '/sessions' },
+      { title: 'Logs de Auditoria', href: '/audit-logs' },
+      { title: 'Sessões', href: '/sessions' },
     ],
   },
   {
-    title: 'Settings',
+    title: 'Configurações',
     href: '/settings',
     icon: Settings,
   },

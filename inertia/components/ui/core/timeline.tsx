@@ -29,8 +29,8 @@ export function TimelineDot({ children, className, variant = 'default' }: Timeli
   const variantStyles = {
     default: 'bg-muted-foreground/20 border-muted-foreground/30',
     primary: 'bg-primary/20 border-primary',
-    success: 'bg-green-500/20 border-green-500',
-    warning: 'bg-yellow-500/20 border-yellow-500',
+    success: 'bg-success/20 border-success',
+    warning: 'bg-warning/20 border-warning',
     destructive: 'bg-destructive/20 border-destructive',
   }
 

@@ -16,13 +16,13 @@ const buttonVariants = cva(
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90 data-[state=open]:bg-destructive/90',
         outline:
-          'bg-background text-accent-foreground border border-input hover:bg-accent data-[state=open]:bg-accent',
+          'bg-background text-foreground border border-input hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
         ghost:
           'text-accent-foreground hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-        success: 'bg-green-500 text-white hover:bg-green-600 data-[state=open]:bg-green-600',
-        warning: 'bg-yellow-500 text-white hover:bg-yellow-600 data-[state=open]:bg-yellow-600',
-        info: 'bg-blue-500 text-white hover:bg-blue-600 data-[state=open]:bg-blue-600',
+        success: 'bg-success text-success-foreground hover:bg-success/90 data-[state=open]:bg-success/90',
+        warning: 'bg-warning text-warning-foreground hover:bg-warning/90 data-[state=open]:bg-warning/90',
+        info: 'bg-info text-info-foreground hover:bg-info/90 data-[state=open]:bg-info/90',
       },
       size: {
         lg: 'h-10 rounded-md px-4 text-sm gap-1.5 [&_svg:not([class*=size-])]:size-4',

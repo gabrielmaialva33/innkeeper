@@ -63,7 +63,7 @@ export function PieChart({
               label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
               outerRadius={80}
               innerRadius={innerRadius}
-              fill="#8884d8"
+              fill="hsl(var(--primary))"
               dataKey="value"
             >
               {data.map((entry, index) => (

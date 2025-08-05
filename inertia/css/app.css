@@ -2,46 +2,46 @@
 
 @layer base {
   :root {
-    /* Metronic-inspired color system using oklch */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Innkeeper Hotel-inspired color system with enhanced vibrancy */
+    --background: 60 15% 98%; /* Warmer cream background */
+    --foreground: 236 35% 25%; /* Deeper, richer text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 60 10% 99%; /* Slightly warm white cards */
+    --card-foreground: 236 35% 25%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 60 10% 99%;
+    --popover-foreground: 236 35% 25%;
 
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 87 35% 55%; /* Much more vibrant sage green */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 218 45% 55%; /* More saturated blue grey */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 60 25% 94%; /* Warmer muted */
+    --muted-foreground: 236 30% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 32 55% 65%; /* More vibrant terracota */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 358 85% 75%; /* More vibrant error red */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --border: 60 20% 88%; /* Slightly more defined borders */
+    --input: 60 15% 95%;
+    --ring: 87 35% 55%; /* More vibrant focus rings */
 
-    --radius: 0.5rem;
+    --radius: 0.75rem; /* Slightly more rounded for hotel feel */
 
-    /* Additional Metronic-like variables */
-    --success: 142.1 76.2% 36.3%;
-    --success-foreground: 355.7 100% 97.3%;
+    /* Hotel-specific semantic colors - enhanced vibrancy */
+    --success: 105 55% 70%; /* More vibrant green success */
+    --success-foreground: 0 0% 100%;
 
-    --warning: 45.4 93.3% 47.5%;
-    --warning-foreground: 26 83.3% 14.1%;
+    --warning: 71 70% 75%; /* More vibrant yellow warning */
+    --warning-foreground: 236 35% 25%;
 
-    --info: 199.7 89% 48.4%;
-    --info-foreground: 210 40% 98%;
+    --info: 218 50% 60%; /* More vibrant blue for info */
+    --info-foreground: 0 0% 100%;
 
     /* Chart colors */
     --chart-1: 220 70% 50%;
@@ -52,50 +52,51 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark hotel-inspired color system with enhanced vibrancy */
+    --background: 236 20% 6%; /* Richer deep charcoal */
+    --foreground: 60 15% 95%; /* Warmer, brighter text */
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 236 18% 9%; /* Warmer darker cards */
+    --card-foreground: 60 15% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 236 18% 9%;
+    --popover-foreground: 60 15% 95%;
 
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 87 40% 65%; /* Much more vibrant sage green */
+    --primary-foreground: 236 20% 6%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 218 50% 65%; /* More vibrant blue grey */
+    --secondary-foreground: 236 20% 6%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 236 18% 12%; /* Warmer muted background */
+    --muted-foreground: 60 12% 75%; /* Better contrast muted text */
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 32 60% 70%; /* Much more vibrant terracota */
+    --accent-foreground: 236 20% 6%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 358 75% 80%; /* More vibrant error for dark */
+    --destructive-foreground: 236 20% 6%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --border: 236 20% 18%; /* More defined borders */
+    --input: 236 18% 12%; /* Input backgrounds */
+    --ring: 87 40% 65%; /* Vibrant sage focus rings */
 
-    /* Additional dark mode variables */
-    --success: 142.1 70.6% 45.3%;
-    --success-foreground: 144.9 80.4% 10%;
+    /* Hotel-specific semantic colors for dark mode - enhanced */
+    --success: 105 50% 75%; /* More vibrant green */
+    --success-foreground: 236 20% 6%;
 
-    --warning: 32.1 94.6% 43.8%;
-    --warning-foreground: 21.7 77.8% 3.1%;
+    --warning: 71 65% 80%; /* More vibrant yellow */
+    --warning-foreground: 236 20% 6%;
 
-    --info: 213.1 93.9% 67.8%;
-    --info-foreground: 216.9 91.4% 12.9%;
+    --info: 218 45% 70%; /* More vibrant blue grey */
+    --info-foreground: 236 20% 6%;
 
-    /* Chart colors for dark mode */
-    --chart-1: 220 70% 60%;
-    --chart-2: 160 60% 55%;
-    --chart-3: 30 80% 65%;
-    --chart-4: 280 65% 70%;
-    --chart-5: 340 75% 65%;
+    /* Chart colors for dark mode - hotel themed */
+    --chart-1: 87 12% 65%; /* Sage variants */
+    --chart-2: 218 31% 55%; /* Blue grey variants */
+    --chart-3: 32 43% 65%; /* Terracota variants */
+    --chart-4: 105 35% 75%; /* Green variants */
+    --chart-5: 71 50% 85%; /* Yellow variants */
   }
 }
 

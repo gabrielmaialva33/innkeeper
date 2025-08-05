@@ -23,33 +23,33 @@ export function UserList({ users }: UserListProps) {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-sand-7">
-                <th className="text-left font-medium text-sand-11 p-2">Name</th>
-                <th className="text-left font-medium text-sand-11 p-2">Email</th>
-                <th className="text-left font-medium text-sand-11 p-2">Username</th>
-                <th className="text-left font-medium text-sand-11 p-2">Verified</th>
-                <th className="text-left font-medium text-sand-11 p-2">Created</th>
-                <th className="text-left font-medium text-sand-11 p-2">Actions</th>
+              <tr className="border-b border-border">
+                <th className="text-left font-medium text-muted-foreground p-2">Name</th>
+                <th className="text-left font-medium text-muted-foreground p-2">Email</th>
+                <th className="text-left font-medium text-muted-foreground p-2">Username</th>
+                <th className="text-left font-medium text-muted-foreground p-2">Verified</th>
+                <th className="text-left font-medium text-muted-foreground p-2">Created</th>
+                <th className="text-left font-medium text-muted-foreground p-2">Actions</th>
               </tr>
             </thead>
             <tbody>
               {users.data.map((user) => (
-                <tr key={user.id} className="border-b border-sand-6 hover:bg-sand-3">
+                <tr key={user.id} className="border-b border-border hover:bg-muted">
                   <td className="p-2 font-medium">{user.full_name}</td>
-                  <td className="p-2 text-sand-11">{user.email}</td>
-                  <td className="p-2 text-sand-11">{user.username || '-'}</td>
+                  <td className="p-2 text-muted-foreground">{user.email}</td>
+                  <td className="p-2 text-muted-foreground">{user.username || '-'}</td>
                   <td className="p-2">
                     {user.email_verified_at ? (
-                      <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full">
+                      <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-success bg-success/10 rounded-full">
                         Verified
                       </span>
                     ) : (
-                      <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-yellow-700 bg-yellow-100 rounded-full">
+                      <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-warning bg-warning/10 rounded-full">
                         Unverified
                       </span>
                     )}
                   </td>
-                  <td className="p-2 text-sand-11">{formatDate(user.created_at)}</td>
+                  <td className="p-2 text-muted-foreground">{formatDate(user.created_at)}</td>
                   <td className="p-2">
                     <div className="flex items-center space-x-2">
                       <Link href={`/users/${user.id}`}>
@@ -71,8 +71,8 @@ export function UserList({ users }: UserListProps) {
         </div>
 
         {users.meta.last_page > 1 && (
-          <div className="flex items-center justify-between mt-4 pt-4 border-t border-sand-7">
-            <div className="text-sm text-sand-11">
+          <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
+            <div className="text-sm text-muted-foreground">
               Showing {users.meta.current_page} of {users.meta.last_page} pages
             </div>
             <div className="flex space-x-2">

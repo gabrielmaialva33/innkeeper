@@ -26,7 +26,9 @@
       "Bash(ls:*)",
       "mcp__playwright__browser_navigate",
       "mcp__playwright__browser_take_screenshot",
-      "mcp__exa__crawling_exa"
+      "mcp__exa__crawling_exa",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_evaluate"
     ],
     "deny": []
   }

@@ -156,7 +156,7 @@
     "react-intersection-observer": "^9.16.0",
     "react-resizable-panels": "^3.0.4",
     "react-use": "^17.6.0",
-    "recharts": "^3.1.0",
+    "recharts": "^3.1.1",
     "reflect-metadata": "^0.2.2",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",

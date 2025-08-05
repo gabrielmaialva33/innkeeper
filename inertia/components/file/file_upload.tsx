@@ -54,14 +54,14 @@ export function FileUpload() {
       </CardHeader>
       <CardContent className="space-y-4">
         <div>
-          <label htmlFor="file-upload" className="block text-sm font-medium text-sand-12 mb-2">
+          <label htmlFor="file-upload" className="block text-sm font-medium text-foreground mb-2">
             Choose file
           </label>
           <input
             id="file-upload"
             type="file"
             onChange={handleFileSelect}
-            className="block w-full text-sm text-sand-11
+            className="block w-full text-sm text-muted-foreground
               file:mr-4 file:py-2 file:px-4
               file:rounded-md file:border-0
               file:text-sm file:font-semibold
@@ -73,9 +73,9 @@ export function FileUpload() {
         </div>
 
         {selectedFile && (
-          <div className="bg-sand-3 rounded-md p-4">
-            <p className="text-sm font-medium text-sand-12">{selectedFile.name}</p>
-            <p className="text-xs text-sand-11 mt-1">Size: {formatFileSize(selectedFile.size)}</p>
+          <div className="bg-muted rounded-md p-4">
+            <p className="text-sm font-medium text-foreground">{selectedFile.name}</p>
+            <p className="text-xs text-muted-foreground mt-1">Size: {formatFileSize(selectedFile.size)}</p>
           </div>
         )}
 
